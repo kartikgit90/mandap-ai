@@ -1,0 +1,23 @@
+# Secrets: never commit these
+.env
+.env.*
+!.env.example
+*service-account*.json
+*credentials*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+.next/
+out/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
