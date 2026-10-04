@@ -40,7 +40,7 @@ export default function Shell({ children }: { children: ReactNode }) {
       <aside className="flex-[1_1_248px] max-w-[272px] bg-white border-r border-line px-3.5 py-5 flex flex-col gap-0.5">
         <Link href="/" className="flex items-center gap-2.5 px-2.5 pb-5 no-underline text-ink">
           <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#C45A1C" strokeWidth="1.6" aria-hidden><path d="M4 24V12l10-8 10 8v12" /><path d="M9 24v-7h10v7" /><path d="M14 4v-2" /></svg>
-          <span className="font-serif text-[23px] font-bold">Mandap AI</span>
+          <span className="font-serif text-[23px] font-bold text-brand">Wedding Affair</span>
         </Link>
         <Link href="/" className={item(path === "/")}>
           <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden><path d="M3 10l8-6 8 6v9H3z" /></svg>Home

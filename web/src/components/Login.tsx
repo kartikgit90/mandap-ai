@@ -37,7 +37,7 @@ export default function Login() {
   return (
     <main className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
-        <h1 className="font-serif text-5xl font-bold">Mandap AI</h1>
+        <h1 className="font-serif text-5xl font-bold text-brand">Wedding Affair</h1>
         <p className="mt-2 text-muted">Find your look for every function, and plan your destination wedding.</p>
 
         <div className="card mt-8 p-6">

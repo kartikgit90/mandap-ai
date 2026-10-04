@@ -8,7 +8,7 @@ from app import knowledge as kb
 from app.agents import Events, lakh
 from app.store import store, wedding, now
 
-SYSTEM = """You are the destination wedding planner inside Mandap AI, a wedding planning tool by a wedding magazine.
+SYSTEM = """You are the destination wedding planner inside the Wedding Affair planning tool, made by Wedding Affair magazine.
 You help Indian couples choose a destination and understand what it will cost.
 
 Rules:

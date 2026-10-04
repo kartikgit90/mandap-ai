@@ -3,7 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "@/lib/auth";
 
 export const metadata: Metadata = {
-  title: "Mandap AI",
+  title: "Wedding Affair",
   description: "AI wedding planner: Shop the Look and Destination weddings",
 };
 
