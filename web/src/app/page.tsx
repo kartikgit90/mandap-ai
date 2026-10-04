@@ -1,173 +1,81 @@
 "use client";
 
-// First page: log in, then ask the backend "who am I?".
-// If this shows your email and role, the whole chain works:
-// website -> Firebase login -> our backend -> role check.
-
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-  type User,
-} from "firebase/auth";
-import { auth } from "@/lib/firebase";
-import { apiGet, apiPost, type LlmTest, type Me } from "@/lib/api";
+import Shell, { SOON } from "@/components/Shell";
+import { api, inr, type Enquiry, type Look, type Plan } from "@/lib/api";
+import { useAuth } from "@/lib/auth";
 
 export default function Home() {
-  const [user, setUser] = useState<User | null>(null);
-  const [me, setMe] = useState<Me | null>(null);
-  const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [llmTest, setLlmTest] = useState<LlmTest | null>(null);
-
-  useEffect(() => onAuthStateChanged(auth, setUser), []);
-
-  // Once logged in, ask the backend who we are.
-  useEffect(() => {
-    if (!user) {
-      setMe(null);
-      return;
-    }
-    apiGet<Me>("/me")
-      .then(setMe)
-      .catch((e: Error) => setError(`Backend: ${e.message}`));
-  }, [user]);
-
-  async function run(action: () => Promise<unknown>) {
-    setError("");
-    setBusy(true);
-    try {
-      await action();
-    } catch (e) {
-      setError(friendly(e));
-    } finally {
-      setBusy(false);
-    }
-  }
-
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#faf6f0] px-4 text-[#2b1d14]">
-      <div className="w-full max-w-sm">
-        <h1 className="font-serif text-4xl tracking-tight">Mandap AI</h1>
-        <p className="mt-2 text-sm text-[#6b5444]">Plan your wedding, one function at a time.</p>
-
-        <div className="mt-8 rounded-2xl border border-[#e8dccd] bg-white p-6 shadow-sm">
-          {!user ? (
-            <>
-              <button
-                onClick={() => run(() => signInWithPopup(auth, new GoogleAuthProvider()))}
-                disabled={busy}
-                className="w-full rounded-lg bg-[#7a1f2b] px-4 py-2.5 text-sm font-medium text-white hover:bg-[#651922] disabled:opacity-60"
-              >
-                Continue with Google
-              </button>
-
-              <div className="my-5 flex items-center gap-3 text-xs text-[#9a8574]">
-                <span className="h-px flex-1 bg-[#e8dccd]" /> or <span className="h-px flex-1 bg-[#e8dccd]" />
-              </div>
-
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border border-[#e8dccd] px-3 py-2 text-sm outline-none focus:border-[#7a1f2b]"
-              />
-              <input
-                type="password"
-                placeholder="Password (6+ characters)"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-2 w-full rounded-lg border border-[#e8dccd] px-3 py-2 text-sm outline-none focus:border-[#7a1f2b]"
-              />
-              <div className="mt-3 flex gap-2">
-                <button
-                  onClick={() => run(() => signInWithEmailAndPassword(auth, email, password))}
-                  disabled={busy}
-                  className="flex-1 rounded-lg border border-[#7a1f2b] px-3 py-2 text-sm text-[#7a1f2b] hover:bg-[#fbf1f2] disabled:opacity-60"
-                >
-                  Log in
-                </button>
-                <button
-                  onClick={() => run(() => createUserWithEmailAndPassword(auth, email, password))}
-                  disabled={busy}
-                  className="flex-1 rounded-lg border border-[#e8dccd] px-3 py-2 text-sm hover:bg-[#faf6f0] disabled:opacity-60"
-                >
-                  Sign up
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="text-sm text-[#6b5444]">Logged in as</p>
-              <p className="font-medium">{user.email}</p>
-
-              <div className="mt-4 rounded-lg bg-[#faf6f0] p-3 text-sm">
-                {me ? (
-                  <>
-                    <p>
-                      Backend says your role is <b>{me.role}</b>
-                    </p>
-                    <p className="mt-1 break-all text-xs text-[#9a8574]">User id: {me.uid}</p>
-                  </>
-                ) : (
-                  !error && <p>Checking with the backend...</p>
-                )}
-              </div>
-
-              {me?.role === "admin" && (
-                <div className="mt-4 rounded-lg border border-[#e8dccd] p-3 text-sm">
-                  <p className="font-medium">Admin: test Claude</p>
-                  <button
-                    onClick={() => run(async () => setLlmTest(await apiPost<LlmTest>("/admin/llm-test")))}
-                    disabled={busy}
-                    className="mt-2 w-full rounded-lg bg-[#7a1f2b] px-3 py-2 text-sm text-white hover:bg-[#651922] disabled:opacity-60"
-                  >
-                    {busy ? "Asking Claude..." : "Test Claude"}
-                  </button>
-                  {llmTest && (
-                    <div className="mt-3 space-y-1">
-                      <p>&ldquo;{llmTest.reply}&rdquo;</p>
-                      <p className="text-xs text-[#9a8574]">
-                        {llmTest.model} via {llmTest.provider} · {llmTest.tokens_in} in / {llmTest.tokens_out} out
-                        tokens · ₹{llmTest.cost_inr.toFixed(4)} · {(llmTest.latency_ms / 1000).toFixed(1)}s
-                      </p>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              <button
-                onClick={() => run(() => signOut(auth))}
-                className="mt-4 w-full rounded-lg border border-[#e8dccd] px-3 py-2 text-sm hover:bg-[#faf6f0]"
-              >
-                Log out
-              </button>
-            </>
-          )}
-
-          {error && <p className="mt-4 text-sm text-[#b42318]">{error}</p>}
-        </div>
-      </div>
-    </main>
+    <Shell>
+      <HomeBody />
+    </Shell>
   );
 }
 
-function friendly(e: unknown): string {
-  const code = (e as { code?: string })?.code ?? "";
-  const map: Record<string, string> = {
-    "auth/invalid-credential": "Wrong email or password.",
-    "auth/email-already-in-use": "That email already has an account. Try Log in.",
-    "auth/weak-password": "Password must be at least 6 characters.",
-    "auth/invalid-email": "That doesn't look like an email address.",
-    "auth/popup-closed-by-user": "Login window was closed.",
-    "auth/unauthorized-domain": "This website address isn't allowed in Firebase yet.",
-  };
-  return map[code] ?? (e as Error)?.message ?? "Something went wrong.";
+function HomeBody() {
+  const { user } = useAuth();
+  const [looks, setLooks] = useState<Look[]>([]);
+  const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
+  const [plan, setPlan] = useState<Plan | null>(null);
+
+  useEffect(() => {
+    if (!user) return;
+    api.get<Look[]>("/looks").then(setLooks).catch(() => {});
+    api.get<Enquiry[]>("/enquiries").then(setEnquiries).catch(() => {});
+    api.get<Plan>("/destinations/plan").then(setPlan).catch(() => {});
+  }, [user]);
+
+  const w = plan?.wedding;
+  const date = w ? new Date(w.date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) : "";
+
+  return (
+    <div className="mx-auto max-w-[1120px]">
+      <p className="text-sm text-muted">Welcome</p>
+      <h1 className="mt-1 font-serif text-[40px] font-bold leading-tight">{w ? `${w.couple}'s wedding` : "Your wedding"}</h1>
+      {w && <p className="mt-2 text-[15px] text-muted">{date} · {w.guests} guests · {w.functions.join(", ")} · budget {inr(w.budget)}</p>}
+
+      <div className="mt-6 grid gap-4 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
+        <Link href="/shop-the-look" className="card overflow-hidden no-underline text-ink flex flex-col hover:border-maroon">
+          <div className="h-[140px] grid grid-cols-3 gap-0.5 bg-[#e9d9c6]">
+            <div className="bg-[#1f6b52]/80" /><div className="bg-[#d9c2a7]" /><div className="bg-[#2a7d84]/70" />
+          </div>
+          <div className="p-5 flex flex-col gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-verified">Live</span>
+            <span className="font-serif text-[28px] font-bold leading-tight">Shop the Look</span>
+            <span className="text-sm leading-relaxed text-muted">Your AI stylist builds a full look for every function: outfit, jewellery and accessories from designers featured in Wedding Affair. Enquire with brands in one click.</span>
+            <span className="mt-1 flex gap-5 text-[13px]"><span><b>{looks.length}</b> looks saved</span><span><b>{enquiries.filter((e) => e.status === "sent").length}</b> enquiries sent</span></span>
+            <span className="btn-primary mt-2 self-start">Start styling</span>
+          </div>
+        </Link>
+
+        <Link href="/destinations" className="card overflow-hidden no-underline text-ink flex flex-col hover:border-maroon">
+          <div className="h-[140px] grid grid-cols-3 gap-0.5 bg-[#d7dde0]">
+            <div className="bg-[#c9a77b]/70" /><div className="bg-[#c9d2d6]" /><div className="bg-[#5d8fa6]/60" />
+          </div>
+          <div className="p-5 flex flex-col gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-verified">Live</span>
+            <span className="font-serif text-[28px] font-bold leading-tight">Destination weddings</span>
+            <span className="text-sm leading-relaxed text-muted">Compare destinations for your guest count and dates, see an estimated budget for each, and ask the planner to bring it within budget.</span>
+            <span className="mt-1 flex gap-5 text-[13px]">
+              <span><b>{plan?.shortlist.length ?? 0}</b> places shortlisted</span>
+              {plan && <span>Leading: <b>{plan.estimate.name}</b> · {inr(plan.estimate.total)}</span>}
+            </span>
+            <span className="btn-primary mt-2 self-start">Plan destination</span>
+          </div>
+        </Link>
+      </div>
+
+      <h2 className="mt-8 text-lg font-bold">Coming soon</h2>
+      <div className="mt-3.5 grid gap-3 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
+        {SOON.map((s) => (
+          <div key={s.label} className="rounded-[14px] border border-dashed border-[#dccbb6] bg-[#f6f0e8] p-4">
+            <span className="block text-[15px] font-bold text-[#4a382c]">{s.label}</span>
+            <span className="mt-1 block text-[13px] text-soft">{s.note}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
