@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInAnonymously,
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -14,6 +15,12 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+
+  // A link ending in ?demo=1 opens the app straight away as a guest, with no sign-up.
+  // Each guest gets their own private demo wedding.
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("demo") === "1") run(() => signInAnonymously(auth));
+  }, []);
 
   async function run(action: () => Promise<unknown>) {
     setError("");
@@ -34,10 +41,14 @@ export default function Login() {
         <p className="mt-2 text-muted">Find your look for every function, and plan your destination wedding.</p>
 
         <div className="card mt-8 p-6">
+          <button onClick={() => run(() => signInAnonymously(auth))} disabled={busy} className="btn-primary w-full py-3">
+            {busy ? "Opening…" : "Explore the demo"}
+          </button>
+          <p className="mt-2 text-center text-xs text-soft">No sign-up needed</p>
           <button
             onClick={() => run(() => signInWithPopup(auth, new GoogleAuthProvider()))}
             disabled={busy}
-            className="btn-primary w-full py-3"
+            className="btn-ghost mt-4 w-full py-3"
           >
             Continue with Google
           </button>
@@ -71,6 +82,7 @@ function friendly(e: unknown): string {
     "auth/weak-password": "Password must be at least 6 characters.",
     "auth/invalid-email": "That doesn't look like an email address.",
     "auth/popup-closed-by-user": "Login window was closed.",
+    "auth/admin-restricted-operation": "Guest access isn't switched on yet. Please use Google for now.",
     "auth/unauthorized-domain": "This website address isn't allowed in Firebase yet.",
   };
   return map[code] ?? (e as Error)?.message ?? "Something went wrong.";

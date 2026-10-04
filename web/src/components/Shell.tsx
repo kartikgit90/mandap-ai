@@ -64,10 +64,10 @@ export default function Shell({ children }: { children: ReactNode }) {
 
         <div className="mt-auto pt-4 border-t border-line flex items-center gap-2.5 px-3">
           <span className="w-9 h-9 rounded-full bg-blush flex items-center justify-center text-[13px] font-bold">
-            {(user.displayName ?? user.email ?? "?").slice(0, 1).toUpperCase()}
+            {(user.displayName ?? user.email ?? "Guest").slice(0, 1).toUpperCase()}
           </span>
           <span className="flex-1 min-w-0 text-[13px]">
-            <span className="block font-bold truncate">{user.displayName ?? user.email}</span>
+            <span className="block font-bold truncate">{user.displayName ?? user.email ?? "Guest"}</span>
             <button onClick={() => signOut(auth)} className="text-soft hover:text-brand">Log out</button>
           </span>
         </div>

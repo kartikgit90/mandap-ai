@@ -4,6 +4,8 @@ Short record of what we chose and why. Newest first.
 
 | Date | Decision | Why |
 | --- | --- | --- |
+| 2026-10-04 | Guest access via Firebase Anonymous sign-in; `?demo=1` link signs in automatically | Reviewers can try the product with one click, no password. Each guest gets a private demo wedding; per-request AI cost cap and 2-instance limit bound spend |
+| 2026-10-04 | Clean white UI with Wedding Affair orange (#d9702f decorative, #c45a1c for buttons/text) | Match the magazine's brand; deeper shade keeps white button text readable |
 | 2026-10-04 | Claude via Anthropic API for now (`LLM_PROVIDER=anthropic`), key in Secret Manager `anthropic-api-key`, read only by the compute service account | Vertex AI Claude quota auto-rejected twice for a new billing account; switch is one setting |
 | 2026-10-04 | Website on Firebase App Hosting, backend `mandap-ai`, asia-southeast1 (Singapore) | App Hosting has no Mumbai region; the web server holds no data, all data stays in Mumbai |
 | 2026-10-04 | Added `mandap-ai--mandap-ai.asia-southeast1.hosted.app` to Firebase Auth authorized domains | Firebase only allows logins from known sites |
