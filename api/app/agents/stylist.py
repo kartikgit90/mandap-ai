@@ -5,7 +5,7 @@ verified brand catalogue, and drafts enquiries to brands for the couple to appro
 """
 
 from app import knowledge as kb
-from app.agents import Events, lakh
+from app.agents import Events, lakh, magazine_search
 from app.store import new_id, now, store, wedding
 
 SYSTEM = """You are the AI stylist inside the Wedding Affair planning tool, made by Wedding Affair magazine.
@@ -43,7 +43,7 @@ TOOLS = [
     },
     {
         "name": "search_magazine",
-        "description": "Search the magazine's published articles for style advice.",
+        "description": "Search Wedding Affair's articles and editor-verified fact sheets by meaning. Returns passages with their source.",
         "input_schema": {"type": "object", "properties": {"query": {"type": "string"}}, "required": ["query"]},
     },
     {
@@ -90,10 +90,7 @@ def build(uid: str, context: dict, ev: Events):
         ]}
 
     def search_magazine(query: str):
-        arts = kb.search_articles(query)
-        for a in arts:
-            ev.source(a["id"], "published", f'{a["issue"]} · {a["title"]}')
-        return {"articles": [{"title": a["title"], "issue": a["issue"], "summary": a["summary"]} for a in arts]}
+        return magazine_search(ev, query)
 
     def propose_look(title, function, side, product_ids, why, top_pick=False):
         pieces = [kb.product(pid) for pid in product_ids]

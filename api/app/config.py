@@ -32,6 +32,12 @@ class Settings(BaseSettings):
     # firestore in the cloud; memory for tests and quick local runs
     store_backend: Literal["firestore", "memory"] = "firestore"
 
+    # Knowledge base (RAG). vertex = Google's embedding model; hash = offline stand-in for tests.
+    embed_backend: Literal["vertex", "hash"] = "vertex"
+    embed_model: str = "gemini-embedding-001"
+    embed_dim: int = 768
+    embed_regions: str = "asia-south1,us-central1"  # tried in order
+
     cors_origins: str = "http://localhost:3000"
     # Also allow our Firebase App Hosting site (address looks like
     # https://mandap-web--mandap-ai.<region>.hosted.app) and any local dev port.

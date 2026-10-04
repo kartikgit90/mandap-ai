@@ -4,6 +4,8 @@ Short record of what we chose and why. Newest first.
 
 | Date | Decision | Why |
 | --- | --- | --- |
+| 2026-10-04 | RAG knowledge base: ~500-char passages, Google `gemini-embedding-001` (768 dims, Vertex AI, Mumbai first then us-central1), stored in Firestore `kb_chunks` with a vector index on (public, embedding) | No extra database or service to pay for; Firestore filters on the tier before the similarity search, and code checks the tier again. Embedding cost is negligible |
+| 2026-10-04 | Agents' `search_magazine` uses RAG; falls back to keyword search over article summaries if the knowledge base is empty or unreachable | The agents never break while the knowledge base is being set up |
 | 2026-10-04 | Guest access via Firebase Anonymous sign-in; `?demo=1` link signs in automatically | Reviewers can try the product with one click, no password. Each guest gets a private demo wedding; per-request AI cost cap and 2-instance limit bound spend |
 | 2026-10-04 | Clean white UI with Wedding Affair orange (#d9702f decorative, #c45a1c for buttons/text) | Match the magazine's brand; deeper shade keeps white button text readable |
 | 2026-10-04 | Claude via Anthropic API for now (`LLM_PROVIDER=anthropic`), key in Secret Manager `anthropic-api-key`, read only by the compute service account | Vertex AI Claude quota auto-rejected twice for a new billing account; switch is one setting |

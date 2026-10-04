@@ -13,6 +13,11 @@ const LIVE = [
   { href: "/destinations", label: "Destination weddings", icon: <><path d="M11 19s6-5.5 6-10a6 6 0 00-12 0c0 4.5 6 10 6 10z" /><circle cx="11" cy="9" r="2" /></> },
 ];
 
+// Behind the scenes: what the AI is allowed to know.
+const MAGAZINE = [
+  { href: "/knowledge", label: "Knowledge base", icon: <><path d="M4 4h6a2 2 0 012 2v12a2 2 0 00-2-2H4z" /><path d="M18 4h-6a2 2 0 00-2 2v12a2 2 0 012-2h6z" /></> },
+];
+
 export const SOON = [
   { label: "Vendors", note: "Photographers, decorators, caterers" },
   { label: "Budget", note: "Split across every function" },
@@ -48,6 +53,14 @@ export default function Shell({ children }: { children: ReactNode }) {
 
         <p className="mt-4 mb-1.5 px-3 text-[11px] font-bold uppercase tracking-[1.2px] text-soft">Live</p>
         {LIVE.map((l) => (
+          <Link key={l.href} href={l.href} className={item(path.startsWith(l.href))}>
+            <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden>{l.icon}</svg>
+            {l.label}
+          </Link>
+        ))}
+
+        <p className="mt-4 mb-1.5 px-3 text-[11px] font-bold uppercase tracking-[1.2px] text-soft">For the magazine team</p>
+        {MAGAZINE.map((l) => (
           <Link key={l.href} href={l.href} className={item(path.startsWith(l.href))}>
             <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden>{l.icon}</svg>
             {l.label}

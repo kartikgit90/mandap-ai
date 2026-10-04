@@ -3,3 +3,6 @@ uvicorn[standard]==0.32.*
 pydantic-settings==2.6.*
 firebase-admin==6.6.*
 anthropic[vertex]==1.11.*
+google-genai==1.*
+pypdf==5.*
+python-multipart==0.0.*

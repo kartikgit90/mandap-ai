@@ -1,0 +1,65 @@
+{
+  "_note": "DEMO DATA for the knowledge base. Placeholder text written for the prototype, not real Wedding Affair content. Internal and confidential documents are included on purpose, to show that the AI never sees them.",
+  "docs": [
+    {
+      "id": "a-jewel-tones", "tier": "published", "issue": "Oct 2026", "title": "Jewel tones for the sangeet",
+      "text": "Emerald, sapphire and deep wine are the colours of this season's sangeet. Under warm evening lights, jewel tones read richer than pastels and hold their colour in photographs, even when the stage lighting changes every few minutes.\n\nPair emerald with polki or uncut diamonds rather than bright gold. Polki has a softer shine that does not fight the fabric. Keep the neckline clean, a sweetheart or a simple V, so a statement choker can carry the look.\n\nIf the groom is coordinating, he should pick a shade from the same family, such as bottle green or deep teal, instead of matching the bride exactly. Matching outfits flatten in group photographs."
+    },
+    {
+      "id": "a-sangeet-edit", "tier": "published", "issue": "Aug 2026", "title": "The sangeet edit",
+      "text": "The sangeet is the function where you will move the most, so comfort decides the outfit. Shararas, light lehengas under 6 kg and pre-stitched dupattas let you dance without holding fabric in place.\n\nSequins and mirror work catch stage lighting well. Avoid heavy zardozi on the skirt if you plan to perform; it adds weight at the hem and swings against your legs.\n\nFor shoes, choose a block heel or embellished juttis. Stilettos sink into lawns and carpets. Keep a second, flatter pair ready for the later part of the night."
+    },
+    {
+      "id": "a-light-dancefloor", "tier": "published", "issue": "Oct 2026", "title": "Light for the dance floor",
+      "text": "Pre-draped sarees are the quiet hit of the year. They look like a traditional drape but take five minutes to wear and do not come loose while dancing.\n\nMirror work and light georgette keep you cool through long functions. For pastel and mint palettes, oxidised silver jewellery looks fresher than gold and is far lighter to wear for six hours.\n\nIf the venue is outdoors, carry a light shawl in the same palette for the late evening, so photographs stay consistent."
+    },
+    {
+      "id": "a-red-returns", "tier": "published", "issue": "Jun 2026", "title": "Red returns to the mandap",
+      "text": "Classic red is back for the pheras, often in deeper shades like sindoori and oxblood. Brides are pairing it with heirloom jewellery rather than buying new sets.\n\nHeavy hand-embroidered lehengas need time. Plan at least 14 to 16 weeks from order to final fitting, and book the first fitting no later than 8 weeks before the wedding. Rush orders usually mean machine embroidery in places.\n\nFor winter weddings, ask for a lined blouse and a dupatta in a heavier net so the outfit holds its shape in cold evening air."
+    },
+    {
+      "id": "a-reception-edit", "tier": "published", "issue": "Dec 2025", "title": "Reception looks that photograph well",
+      "text": "Ivory, champagne and gold photograph beautifully under warm reception lighting. They also give the bride a clear change from the red of the pheras.\n\nGown-lehenga hybrids, with a structured bodice and a lighter flared skirt, are easier to move in during a long reception line. Grooms can switch from a sherwani to a tuxedo or a velvet bandhgala.\n\nDiamonds and polki both work with ivory. Keep earrings long if the hair is up, so the face is framed in close-up portraits."
+    },
+    {
+      "id": "a-haldi-brights", "tier": "published", "issue": "Apr 2026", "title": "Haldi brights",
+      "text": "Haldi stains. Choose cotton, mulmul or chanderi that you do not mind ruining, and skip anything with delicate embroidery.\n\nYellow is traditional, but marigold, parrot green and pink are popular now. Floral jewellery made of fresh or fabric flowers is light, inexpensive and photographs well in daylight.\n\nPlan the haldi for the morning. The light is softer, and the paste is easier to wash off before the next function."
+    },
+    {
+      "id": "a-pastels", "tier": "published", "issue": "Feb 2026", "title": "Pastels for day functions",
+      "text": "Pastel pinks, mint and powder blue suit daytime mehendi and pooja functions. They look fresh in natural light and keep the attention on the mehendi itself.\n\nGota patti work is light and breathable for outdoor settings. Avoid heavy velvet and dense sequins in the day; they look flat in sunlight and get hot quickly.\n\nKeep jewellery delicate: a maang tikka, small jhumkas and a few bangles are enough for a mehendi."
+    },
+    {
+      "id": "a-groom-edit", "tier": "published", "issue": "Oct 2026", "title": "The groom's wardrobe, function by function",
+      "text": "Grooms should match the bride's palette, not her exact colour. If she wears emerald, a bottle green or ivory with green embroidery works better than the same emerald.\n\nLinen kurtas suit the haldi and mehendi. Velvet bandhgalas are ideal for winter evening functions like the sangeet. For the pheras, an ivory or gold sherwani with a safa in the bride's colour ties the couple together.\n\nCustom sherwanis need 6 to 8 weeks. Book the final fitting at least two weeks before the wedding."
+    },
+    {
+      "id": "a-udaipur-guide", "tier": "published", "issue": "Sep 2026", "title": "A guide to Udaipur weddings",
+      "text": "Udaipur's lake-facing palaces book 9 to 12 months ahead for peak season, November to February. Weekends around Diwali and the new year go first.\n\nSome island and lake venues need boat transfers. Plan guest movement in batches, and keep the elderly guests on the first boats. Budget for extra coordinators on the ghats.\n\nThe city has direct flights from Delhi and Mumbai. For larger groups, check whether the venue's room count covers your guest list or whether you need a second hotel nearby."
+    },
+    {
+      "id": "a-goa-guide", "tier": "published", "issue": "Jan 2026", "title": "Beach weddings in Goa",
+      "text": "Sunset pheras on the beach are Goa's signature, usually timed around 5:30 pm in winter. Have a covered backup space in case of wind.\n\nMany venues follow sound restrictions after 10 pm. Plan the sangeet earlier in the evening, or move it indoors, so the music does not stop mid-performance.\n\nNovember to February is the best season. Monsoon months bring heavy rain and many beach shacks close."
+    },
+    {
+      "id": "v-booking-windows", "tier": "verified", "issue": "Editor's desk", "title": "Booking windows by category (verified)",
+      "text": "Editor-verified booking windows for Indian weddings in peak season. Palace and heritage venues: 9 to 12 months ahead. Five-star city hotels: 6 to 9 months. Top photographers: 8 to 10 months. Designer bridal lehengas: order 4 months before, final fitting 2 to 3 weeks before. Make-up artists: 6 months ahead for peak dates.\n\nThese windows were checked with venues and brands featured in the magazine and are reviewed every quarter."
+    },
+    {
+      "id": "v-destination-rules", "tier": "verified", "issue": "Editor's desk", "title": "Destination rules couples ask about (verified)",
+      "text": "Goa: many beach venues stop amplified music at 10 pm. Udaipur: some lake venues limit fireworks and need prior permission. Jaipur: heritage properties may restrict open flames near old structures, so check before planning a havan indoors. Kerala backwaters: houseboat capacity is limited, so plan larger events on land.\n\nVerified with venue managers by the Wedding Affair editorial team."
+    },
+    {
+      "id": "i-ad-rates", "tier": "internal", "issue": "Sales team", "title": "Advertiser commission and rate notes (internal)",
+      "text": "Internal sales notes. Commission on enquiries converted through the planning tool: Atelier Noor 8 percent, Raag Studio 10 percent, Kesar House 6 percent, Tara Fine Jewels 7 percent, Moti Lane 12 percent, Vansh Menswear 9 percent. Full-page rate for the Oct issue is under negotiation. Do not share outside the sales team."
+    },
+    {
+      "id": "i-q3-plan", "tier": "internal", "issue": "Strategy", "title": "Q3 brand partnership plan (internal)",
+      "text": "Internal plan. Push Shop the Look placements for jewellery brands in the sangeet and reception edits. Offer premium placement to brands that commit to two issues. Target three new destination partners in Rajasthan before peak season."
+    },
+    {
+      "id": "c-brand-contacts", "tier": "confidential", "issue": "Legal", "title": "Brand contacts and contract terms (confidential)",
+      "text": "Confidential. Atelier Noor orders desk orders@example-noor.test, phone +91-00000-00001. Raag Studio hello@example-raag.test. Contract renewal for Moti Lane due in March with a revised exclusivity clause. Never share with couples or the AI."
+    }
+  ]
+}

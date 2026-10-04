@@ -37,3 +37,28 @@ class Events:
             "estimates": self.estimates,
             "sources": list(self._sources.values()),
         }
+
+
+def magazine_search(ev: "Events", query: str) -> dict:
+    """RAG search over the magazine's knowledge base, for the agents' search_magazine tool.
+    Only verified and published passages can come back (enforced in rag.search).
+    If the knowledge base is empty or unreachable, falls back to keyword search over article summaries."""
+    import logging
+
+    from app import knowledge as kb
+    from app import rag
+
+    try:
+        hits = rag.search(query, audience="couple", k=4)["hits"]
+    except Exception:  # noqa: BLE001
+        logging.getLogger("mandap").exception("RAG search failed, using keyword fallback")
+        hits = []
+    if hits:
+        for h in hits:
+            ev.source(h["doc_id"], h["tier"], f'{h["issue"]} · {h["title"]}' if h.get("issue") else h["title"])
+        return {"passages": [{"source": h["title"], "issue": h.get("issue", ""), "tier": h["tier"], "text": h["text"]} for h in hits],
+                "note": "Answer from these passages. Mention the source by title when you use one."}
+    arts = kb.search_articles(query)
+    for x in arts:
+        ev.source(x["id"], "published", f'{x["issue"]} · {x["title"]}')
+    return {"passages": [{"source": x["title"], "issue": x["issue"], "tier": "published", "text": x["summary"]} for x in arts]}

@@ -5,7 +5,7 @@ so numbers are always consistent), and proposes plan changes the couple must app
 """
 
 from app import knowledge as kb
-from app.agents import Events, lakh
+from app.agents import Events, lakh, magazine_search
 from app.store import store, wedding, now
 
 SYSTEM = """You are the destination wedding planner inside the Wedding Affair planning tool, made by Wedding Affair magazine.
@@ -66,7 +66,7 @@ TOOLS = [
     },
     {
         "name": "search_magazine",
-        "description": "Search the magazine's published destination guides.",
+        "description": "Search Wedding Affair's destination guides and editor-verified rules by meaning. Returns passages with their source.",
         "input_schema": {"type": "object", "properties": {"query": {"type": "string"}}, "required": ["query"]},
     },
 ]
@@ -121,11 +121,8 @@ def build(uid: str, ev: Events):
                              "overrides": overrides, "before_total": before["total"], "after_total": after["total"]})
         return {"proposed": True, "new_total": lakh(after["total"]), "note": "The couple must press Apply."}
 
-    def search_magazine(query):
-        arts = kb.search_articles(query)
-        for a in arts:
-            ev.source(a["id"], "published", f'{a["issue"]} · {a["title"]}')
-        return {"articles": [{"title": a["title"], "issue": a["issue"], "summary": a["summary"]} for a in arts]}
+    def search_magazine(query: str):
+        return magazine_search(ev, query)
 
     handlers = {
         "list_destinations": list_destinations,

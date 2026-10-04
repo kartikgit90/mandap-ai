@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app import llm
 from app.auth import CurrentUser, get_current_user, require_role
 from app.config import get_settings
+from app.kb_routes import router as kb_router
 from app.routes import router
 
 settings = get_settings()
@@ -28,6 +29,7 @@ app.add_middleware(
 
 
 app.include_router(router)
+app.include_router(kb_router)
 
 
 @app.middleware("http")

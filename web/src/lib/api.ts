@@ -10,6 +10,8 @@ export const api = {
   post: <T,>(path: string, body?: unknown) => request<T>("POST", path, body),
   put: <T,>(path: string, body?: unknown) => request<T>("PUT", path, body),
   del: <T,>(path: string) => request<T>("DELETE", path),
+  patch: <T,>(path: string, body?: unknown) => request<T>("PATCH", path, body),
+  upload: <T,>(path: string, form: FormData) => request<T>("POST", path, form),
 };
 
 // Kept for older code
@@ -22,12 +24,13 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
 
   const headers: Record<string, string> = {};
   if (token) headers.Authorization = `Bearer ${token}`;
-  if (body !== undefined) headers["Content-Type"] = "application/json";
+  const isForm = body instanceof FormData; // file uploads: the browser sets the content type
+  if (body !== undefined && !isForm) headers["Content-Type"] = "application/json";
 
   const res = await fetch(`${API_URL}${path}`, {
     method,
     headers,
-    body: body !== undefined ? JSON.stringify(body) : undefined,
+    body: body === undefined ? undefined : isForm ? body : JSON.stringify(body),
   });
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
@@ -146,6 +149,10 @@ export type AgentReply = {
 };
 
 export type ChatMsg = { role: "user" | "assistant"; content: string };
+
+export type Tier = "verified" | "published" | "internal" | "confidential";
+export type KbDoc = { id: string; title: string; issue: string; tier: Tier; source: string; chunks: number; chars: number; preview: string; created_at: string };
+export type KbHit = { doc_id: string; title: string; issue?: string; tier: Tier; text: string; score: number };
 
 // ---------- Formatting ----------
 
