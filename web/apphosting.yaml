@@ -1,0 +1,13 @@
+# Settings for Firebase App Hosting (runs the Next.js website).
+runConfig:
+  minInstances: 0   # scale to zero when nobody is using it: no cost
+  maxInstances: 2   # safety cap on cost
+  cpu: 1
+  memoryMiB: 512
+
+env:
+  - variable: NEXT_PUBLIC_API_URL
+    value: https://mandap-api-871196743492.asia-south1.run.app
+    availability:
+      - BUILD
+      - RUNTIME

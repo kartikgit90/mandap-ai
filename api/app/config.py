@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     anthropic_api_key: str = ""
 
     cors_origins: str = "http://localhost:3000"
+    # Also allow our Firebase App Hosting site (address looks like
+    # https://mandap-web--mandap-ai.<region>.hosted.app) and any local dev port.
+    cors_origin_regex: str = r"https://[a-z0-9-]+--mandap-ai\.[a-z0-9-]+\.hosted\.app|http://localhost:\d+"
 
     @property
     def cors_origin_list(self) -> list[str]:

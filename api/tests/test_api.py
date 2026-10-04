@@ -56,5 +56,22 @@ def test_couple_cannot_reach_admin():
     assert client.get("/admin/ping", headers=bearer("couple-token")).status_code == 403
 
 
+@pytest.mark.parametrize(
+    "origin,allowed",
+    [
+        ("https://mandap-web--mandap-ai.asia-southeast1.hosted.app", True),
+        ("http://localhost:3000", True),
+        ("https://evil.example.com", False),
+        ("https://mandap-web--someone-else.us-central1.hosted.app", False),
+    ],
+)
+def test_cors_allows_only_our_sites(origin, allowed):
+    r = client.options(
+        "/me",
+        headers={"Origin": origin, "Access-Control-Request-Method": "GET"},
+    )
+    assert (r.headers.get("access-control-allow-origin") == origin) is allowed
+
+
 def test_admin_can_reach_admin():
     assert client.get("/admin/ping", headers=bearer("admin-token")).status_code == 200
