@@ -75,6 +75,10 @@ function Body() {
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-4 py-3.5">
               <span className="font-bold">Documents <span className="font-normal text-soft">· {docs?.length ?? 0} documents, {chunks} passages</span></span>
               {!canEdit && <span className="text-xs text-soft">Viewing as a couple. Editors can add and re-tier documents.</span>}
+              {canEdit && !!docs?.length && (
+                <button className="text-xs font-semibold text-brand hover:underline" disabled={busy}
+                  onClick={() => act(() => api.post("/kb/seed"))}>{busy ? "Working…" : "Reload demo documents"}</button>
+              )}
             </div>
             {docs === null ? (
               <p className="px-4 py-8 text-sm text-soft">Loading…</p>

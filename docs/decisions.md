@@ -4,6 +4,7 @@ Short record of what we chose and why. Newest first.
 
 | Date | Decision | Why |
 | --- | --- | --- |
+| 2026-10-04 | RAG relevance floor 0.62 (cosine similarity); tiny trailing chunks merged into the previous one | First live test passed weak matches (~0.55) to the AI; better it says it doesn't know than answer from an unrelated passage |
 | 2026-10-04 | RAG knowledge base: ~500-char passages, Google `gemini-embedding-001` (768 dims, Vertex AI, Mumbai first then us-central1), stored in Firestore `kb_chunks` with a vector index on (public, embedding) | No extra database or service to pay for; Firestore filters on the tier before the similarity search, and code checks the tier again. Embedding cost is negligible |
 | 2026-10-04 | Agents' `search_magazine` uses RAG; falls back to keyword search over article summaries if the knowledge base is empty or unreachable | The agents never break while the knowledge base is being set up |
 | 2026-10-04 | Guest access via Firebase Anonymous sign-in; `?demo=1` link signs in automatically | Reviewers can try the product with one click, no password. Each guest gets a private demo wedding; per-request AI cost cap and 2-instance limit bound spend |

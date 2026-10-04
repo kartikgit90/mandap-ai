@@ -64,6 +64,10 @@ def chunk(text: str, max_chars: int = MAX_CHARS) -> list[str]:
         cur += s + " "
     if cur.strip():
         chunks.append(cur.strip())
+    # Fold a tiny last piece (e.g. a one-line sign-off) into the chunk before it.
+    if len(chunks) > 1 and len(chunks[-1]) < max_chars // 3:
+        tail = chunks.pop()
+        chunks[-1] = chunks[-1] + " " + tail
     return [c[: max_chars * 2] for c in chunks]
 
 
@@ -77,6 +81,7 @@ class VertexEmbedder:
 
         s = get_settings()
         self.model, self.dim = s.embed_model, s.embed_dim
+        self.min_score = s.rag_min_score
         self.clients = [genai.Client(vertexai=True, project=s.gcp_project_id, location=r)
                         for r in s.embed_regions.split(",")]
 
@@ -105,6 +110,7 @@ class HashEmbedder:
     """Offline stand-in for tests and local runs: word overlap, no network, no cost."""
 
     dim = 256
+    min_score = 0.0
 
     def embed(self, texts: list[str], kind: str = "document") -> list[list[float]]:
         out = []
@@ -266,9 +272,11 @@ def search(query: str, *, audience: Audience = "couple", k: int = 4) -> dict:
     audience='couple' (the AI agents, couples): verified + published only.
     audience='editor' (knowledge-base console): also returns what was blocked, to show the tiers working."""
     qv = embedder().embed([query], "query")[0]
+    floor = embedder().min_score  # weak matches are dropped, so the AI says "I don't know" instead of guessing
     allowed = kb_store().nearest(qv, public=True, k=k)
-    allowed = [h for h in allowed if h.get("tier") in COUPLE_TIERS]  # belt and braces
+    allowed = [h for h in allowed if h.get("tier") in COUPLE_TIERS and h["score"] >= floor]  # belt and braces
     blocked = kb_store().nearest(qv, public=False, k=k) if audience == "editor" else []
+    blocked = [b for b in blocked if b["score"] >= floor]
     return {"hits": allowed, "blocked": blocked}
 
 

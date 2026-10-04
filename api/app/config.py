@@ -37,6 +37,7 @@ class Settings(BaseSettings):
     embed_model: str = "gemini-embedding-001"
     embed_dim: int = 768
     embed_regions: str = "asia-south1,us-central1"  # tried in order
+    rag_min_score: float = 0.62  # passages less similar than this are not given to the AI
 
     cors_origins: str = "http://localhost:3000"
     # Also allow our Firebase App Hosting site (address looks like

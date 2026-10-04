@@ -92,3 +92,10 @@ def test_editor_adds_uploads_retiers_and_deletes():
     assert client.patch(f"/kb/docs/{doc_id}", json={"tier": "confidential"}, headers=EDITOR).json()["tier"] == "confidential"
     assert client.delete(f"/kb/docs/{doc_id}", headers=EDITOR).status_code == 200
     assert rag.kb_store().get(doc_id) is None
+
+
+def test_tiny_last_piece_is_folded_into_previous_chunk():
+    text = ("Long sentence about bridal fittings and timelines. " * 12) + "\n\nVerified by editors."
+    parts = rag.chunk(text)
+    assert not any(p == "Verified by editors." for p in parts)
+    assert parts[-1].endswith("Verified by editors.")
