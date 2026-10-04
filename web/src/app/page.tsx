@@ -6,6 +6,9 @@ import Shell, { SOON } from "@/components/Shell";
 import { api, inr, type Enquiry, type Look, type Plan } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 
+// Demo photos (Unsplash), the same ones used in the Shop the Look catalogue.
+const SHOP_PHOTOS = ["photo-1619715613791-89d35b51ff81", "photo-1610173827043-9db50e0d8ef9", "photo-1570055349452-29232699cc63"];
+
 export default function Home() {
   return (
     <Shell>
@@ -37,9 +40,12 @@ function HomeBody() {
       {w && <p className="mt-2 text-[15px] text-muted">{date} · {w.guests} guests · {w.functions.join(", ")} · budget {inr(w.budget)}</p>}
 
       <div className="mt-6 grid gap-4 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
-        <Link href="/shop-the-look" className="card overflow-hidden no-underline text-ink flex flex-col hover:border-maroon">
-          <div className="h-[140px] grid grid-cols-3 gap-0.5 bg-[#e9d9c6]">
-            <div className="bg-[#1f6b52]/80" /><div className="bg-[#d9c2a7]" /><div className="bg-[#2a7d84]/70" />
+        <Link href="/shop-the-look" className="card overflow-hidden no-underline text-ink flex flex-col hover:border-brand-bright">
+          <div className="h-[160px] grid grid-cols-3 gap-0.5 bg-blush">
+            {SHOP_PHOTOS.map((id) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={id} src={`https://images.unsplash.com/${id}?w=300&h=320&fit=crop&crop=top&auto=format&q=70`} alt="" onError={(e) => { e.currentTarget.style.visibility = "hidden"; }} className="h-full w-full object-cover object-top" />
+            ))}
           </div>
           <div className="p-5 flex flex-col gap-2">
             <span className="text-[11px] font-bold uppercase tracking-wider text-verified">Live</span>
@@ -50,9 +56,9 @@ function HomeBody() {
           </div>
         </Link>
 
-        <Link href="/destinations" className="card overflow-hidden no-underline text-ink flex flex-col hover:border-maroon">
-          <div className="h-[140px] grid grid-cols-3 gap-0.5 bg-[#d7dde0]">
-            <div className="bg-[#c9a77b]/70" /><div className="bg-[#c9d2d6]" /><div className="bg-[#5d8fa6]/60" />
+        <Link href="/destinations" className="card overflow-hidden no-underline text-ink flex flex-col hover:border-brand-bright">
+          <div className="h-[160px] grid grid-cols-3 gap-0.5 bg-blush">
+            <div className="bg-[#f6d6bf]" /><div className="bg-[#eab48d]" /><div className="bg-brand-bright/80" />
           </div>
           <div className="p-5 flex flex-col gap-2">
             <span className="text-[11px] font-bold uppercase tracking-wider text-verified">Live</span>
@@ -70,8 +76,8 @@ function HomeBody() {
       <h2 className="mt-8 text-lg font-bold">Coming soon</h2>
       <div className="mt-3.5 grid gap-3 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
         {SOON.map((s) => (
-          <div key={s.label} className="rounded-[14px] border border-dashed border-[#dccbb6] bg-[#f6f0e8] p-4">
-            <span className="block text-[15px] font-bold text-[#4a382c]">{s.label}</span>
+          <div key={s.label} className="rounded-[14px] border border-dashed border-line-strong bg-cream p-4">
+            <span className="block text-[15px] font-bold text-ink">{s.label}</span>
             <span className="mt-1 block text-[13px] text-soft">{s.note}</span>
           </div>
         ))}

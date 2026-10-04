@@ -32,14 +32,14 @@ export default function Shell({ children }: { children: ReactNode }) {
 
   const item = (active: boolean) =>
     `flex items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-sm no-underline ${
-      active ? "bg-blush text-maroon font-bold" : "text-ink font-semibold hover:bg-cream"
+      active ? "bg-blush text-brand font-bold" : "text-ink font-semibold hover:bg-cream"
     }`;
 
   return (
     <div className="min-h-screen flex flex-wrap">
       <aside className="flex-[1_1_248px] max-w-[272px] bg-white border-r border-line px-3.5 py-5 flex flex-col gap-0.5">
         <Link href="/" className="flex items-center gap-2.5 px-2.5 pb-5 no-underline text-ink">
-          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#7A1F2B" strokeWidth="1.6" aria-hidden><path d="M4 24V12l10-8 10 8v12" /><path d="M9 24v-7h10v7" /><path d="M14 4v-2" /></svg>
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="#C45A1C" strokeWidth="1.6" aria-hidden><path d="M4 24V12l10-8 10 8v12" /><path d="M9 24v-7h10v7" /><path d="M14 4v-2" /></svg>
           <span className="font-serif text-[23px] font-bold">Mandap AI</span>
         </Link>
         <Link href="/" className={item(path === "/")}>
@@ -56,19 +56,19 @@ export default function Shell({ children }: { children: ReactNode }) {
 
         <p className="mt-4 mb-1.5 px-3 text-[11px] font-bold uppercase tracking-[1.2px] text-soft">Coming soon</p>
         {SOON.map((s) => (
-          <span key={s.label} className="flex items-center gap-2.5 rounded-[10px] px-3 py-2 text-sm text-[#7a6858]">
+          <span key={s.label} className="flex items-center gap-2.5 rounded-[10px] px-3 py-2 text-sm text-soft">
             {s.label}
             <span className="ml-auto rounded-md border border-line-strong px-1.5 py-0.5 text-[10px] font-bold tracking-wide">SOON</span>
           </span>
         ))}
 
         <div className="mt-auto pt-4 border-t border-line flex items-center gap-2.5 px-3">
-          <span className="w-9 h-9 rounded-full bg-[#e9d9c6] flex items-center justify-center text-[13px] font-bold">
+          <span className="w-9 h-9 rounded-full bg-blush flex items-center justify-center text-[13px] font-bold">
             {(user.displayName ?? user.email ?? "?").slice(0, 1).toUpperCase()}
           </span>
           <span className="flex-1 min-w-0 text-[13px]">
             <span className="block font-bold truncate">{user.displayName ?? user.email}</span>
-            <button onClick={() => signOut(auth)} className="text-soft hover:text-maroon">Log out</button>
+            <button onClick={() => signOut(auth)} className="text-soft hover:text-brand">Log out</button>
           </span>
         </div>
       </aside>

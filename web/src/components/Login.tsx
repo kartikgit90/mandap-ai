@@ -46,11 +46,11 @@ export default function Login() {
           </div>
           <label className="sr-only" htmlFor="email">Email</label>
           <input id="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-line-strong px-3 py-2.5 text-sm outline-none focus:border-maroon" />
+            className="w-full rounded-lg border border-line-strong px-3 py-2.5 text-sm outline-none focus:border-brand" />
           <label className="sr-only" htmlFor="password">Password</label>
           <input id="password" type="password" placeholder="Password (6+ characters)" value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-2 w-full rounded-lg border border-line-strong px-3 py-2.5 text-sm outline-none focus:border-maroon" />
+            className="mt-2 w-full rounded-lg border border-line-strong px-3 py-2.5 text-sm outline-none focus:border-brand" />
           <div className="mt-3 flex gap-2">
             <button onClick={() => run(() => signInWithEmailAndPassword(auth, email, password))} disabled={busy} className="btn-ghost flex-1">Log in</button>
             <button onClick={() => run(() => createUserWithEmailAndPassword(auth, email, password))} disabled={busy} className="btn-ghost flex-1">Sign up</button>

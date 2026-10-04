@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbf7f1;
-  --foreground: #2a1a14;
+  --background: #ffffff;
+  --foreground: #231815;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-ink: #2a1a14;
-  --color-muted: #5e4a3c;
-  --color-soft: #6b5444;
-  --color-line: #ede2d4;
-  --color-line-strong: #e5d6c3;
-  --color-cream: #fbf7f1;
-  --color-maroon: #7a1f2b;
-  --color-maroon-dark: #5c1520;
-  --color-blush: #f6e8e9;
+  --color-ink: #231815;
+  --color-muted: #57504c;
+  --color-soft: #736b66;
+  --color-line: #eeebe8;
+  --color-line-strong: #e2ddd8;
+  --color-cream: #f8f7f5;
+  /* Wedding Affair orange. brand is the accessible shade for buttons and text on white;
+     brand-bright is the exact site orange, used only for decoration (strips, borders). */
+  --color-brand: #c45a1c;
+  --color-brand-dark: #a34a16;
+  --color-brand-bright: #d9702f;
+  --color-blush: #fdf1e8;
   --color-verified: #2f6b3f;
   --color-published: #2c5a8c;
   --color-warn: #9a4a12;
@@ -25,6 +28,7 @@
 }
 
 body {
+  border-top: 4px solid var(--color-brand-bright); /* the orange strip from the magazine's site */
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
@@ -37,14 +41,14 @@ body {
 }
 
 .btn-primary {
-  background: var(--color-maroon);
+  background: var(--color-brand);
   color: #fff;
   border-radius: 10px;
   font-weight: 600;
   font-size: 14px;
   padding: 10px 16px;
 }
-.btn-primary:hover { background: var(--color-maroon-dark); }
+.btn-primary:hover { background: var(--color-brand-dark); }
 .btn-primary:disabled { opacity: 0.6; }
 
 .btn-ghost {
@@ -58,6 +62,8 @@ body {
 }
 .btn-ghost:hover { background: var(--color-cream); }
 
+.chip:hover { border-color: var(--color-brand-bright); }
+
 .chip {
   border: 1px solid var(--color-line-strong);
   border-radius: 999px;
@@ -66,8 +72,8 @@ body {
   background: #fff;
 }
 .chip[aria-pressed="true"] {
-  background: var(--color-maroon);
-  border-color: var(--color-maroon);
+  background: var(--color-brand);
+  border-color: var(--color-brand);
   color: #fff;
   font-weight: 600;
 }

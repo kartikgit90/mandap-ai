@@ -76,9 +76,9 @@ function Body() {
           <p className="mt-1 text-sm text-muted">Complete looks for every function, from designers featured in Wedding Affair</p>
         </div>
         <div className="flex gap-2" role="tablist">
-          <button role="tab" aria-selected={tab === "new"} onClick={() => setTab("new")} className={`btn-ghost ${tab === "new" ? "border-maroon" : ""}`}>Stylist&rsquo;s looks</button>
-          <button role="tab" aria-selected={tab === "saved"} onClick={() => setTab("saved")} className={`btn-ghost ${tab === "saved" ? "border-maroon" : ""}`}>Saved ({saved.length})</button>
-          <button role="tab" aria-selected={tab === "enquiries"} onClick={() => setTab("enquiries")} className={`btn-ghost ${tab === "enquiries" ? "border-maroon" : ""}`}>Enquiries ({enquiries.length})</button>
+          <button role="tab" aria-selected={tab === "new"} onClick={() => setTab("new")} className={`btn-ghost ${tab === "new" ? "border-brand" : ""}`}>Stylist&rsquo;s looks</button>
+          <button role="tab" aria-selected={tab === "saved"} onClick={() => setTab("saved")} className={`btn-ghost ${tab === "saved" ? "border-brand" : ""}`}>Saved ({saved.length})</button>
+          <button role="tab" aria-selected={tab === "enquiries"} onClick={() => setTab("enquiries")} className={`btn-ghost ${tab === "enquiries" ? "border-brand" : ""}`}>Enquiries ({enquiries.length})</button>
         </div>
       </div>
 
@@ -160,16 +160,16 @@ function LookCard({ look, budget, onSave, onDelete }: { look: Look; budget: numb
   const [heroOk, setHeroOk] = useState(true);
 
   return (
-    <article className={`card overflow-hidden ${look.top_pick ? "border-2 border-maroon" : ""}`}>
-      <div className="relative h-[260px] flex bg-[#e9d9c6]">
+    <article className={`card overflow-hidden ${look.top_pick ? "border-2 border-brand" : ""}`}>
+      <div className="relative h-[260px] flex bg-blush">
         {hero?.image && heroOk ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={photo(hero.image, 600, 780)} alt={hero.name} loading="lazy" onError={() => setHeroOk(false)}
             className="h-full w-full object-cover object-top" />
         ) : (
-          colors.map((c) => <div key={c} className="flex-1" style={{ background: SWATCH[c] ?? "#e9d9c6" }} />)
+          colors.map((c) => <div key={c} className="flex-1" style={{ background: SWATCH[c] ?? "#f3ece6" }} />)
         )}
-        {look.top_pick && <span className="absolute left-2.5 top-2.5 rounded-md bg-white px-2 py-1 text-[11px] font-bold text-maroon">Stylist&rsquo;s pick</span>}
+        {look.top_pick && <span className="absolute left-2.5 top-2.5 rounded-md bg-white px-2 py-1 text-[11px] font-bold text-brand">Stylist&rsquo;s pick</span>}
         {hero?.image_credit && heroOk && (
           <span className="absolute bottom-1.5 right-2 rounded bg-black/45 px-1.5 py-0.5 text-[10px] text-white">Photo: {hero.image_credit}</span>
         )}
@@ -186,7 +186,7 @@ function LookCard({ look, budget, onSave, onDelete }: { look: Look; budget: numb
             </div>
           ))}
         </div>
-        <div className="mt-3 flex justify-between border-t border-[#f0e6da] pt-2.5 text-sm">
+        <div className="mt-3 flex justify-between border-t border-line pt-2.5 text-sm">
           <span className="text-muted">Full look</span>
           <span className="font-bold">{inr(look.total)} <span className={`font-medium ${over ? "text-warn" : "text-verified"}`}>{over ? "over budget" : "in budget"}</span></span>
         </div>
@@ -219,7 +219,7 @@ function Thumb({ piece }: { piece: Look["pieces"][number] }) {
         className="h-10 w-10 flex-none rounded-lg object-cover" />
     );
   }
-  return <span className="h-10 w-10 flex-none rounded-lg" style={{ background: SWATCH[piece.colors[0]] ?? "#e9d9c6" }} />;
+  return <span className="h-10 w-10 flex-none rounded-lg" style={{ background: SWATCH[piece.colors[0]] ?? "#f3ece6" }} />;
 }
 
 function DraftCards({ drafts, onSend, onDiscard }: { drafts: Enquiry[]; onSend: (id: string) => Promise<void>; onDiscard: (id: string) => Promise<void> }) {
@@ -233,8 +233,8 @@ function DraftCards({ drafts, onSend, onDiscard }: { drafts: Enquiry[]; onSend: 
 function Draft({ d, onSend, onDiscard }: { d: Enquiry; onSend: (id: string) => Promise<void>; onDiscard: (id: string) => Promise<void> }) {
   const [state, setState] = useState<"draft" | "sent" | "discarded">("draft");
   return (
-    <div className="rounded-[14px] border border-[#f0d9ae] bg-[#fff8ec] px-3.5 py-3 text-sm leading-relaxed">
-      <b className="block text-[13px] text-[#8a5a12]">{state === "sent" ? "Sent" : state === "discarded" ? "Discarded" : "Ready to send. Please check:"}</b>
+    <div className="rounded-[14px] border border-[#f6d6bf] bg-blush px-3.5 py-3 text-sm leading-relaxed">
+      <b className="block text-[13px] text-brand-dark">{state === "sent" ? "Sent" : state === "discarded" ? "Discarded" : "Ready to send. Please check:"}</b>
       <span className="mt-1 block">Enquiry to <b>{d.brand}</b> about {d.items.map((i) => i.name).join(", ")}.</span>
       <ul className="mt-1 list-disc pl-5">{d.questions.map((q) => <li key={q}>{q}</li>)}</ul>
       <span className="mt-1 block text-xs text-soft">Shares: {d.shares.join(", ")}. Never shares: {d.never_shares.join(", ")}.</span>

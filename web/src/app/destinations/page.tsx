@@ -71,7 +71,7 @@ function Body() {
                 <Line key={l.key} label={l.label} amount={l.amount} pct={(l.amount / maxLine) * 100} edited={l.key in est.overrides} />
               ))}
             </div>
-            <div className="mt-4 flex flex-wrap justify-between gap-2 border-t border-[#f0e6da] pt-3 text-sm">
+            <div className="mt-4 flex flex-wrap justify-between gap-2 border-t border-line pt-3 text-sm">
               <span>
                 Total <b>{inr(est.total)}</b> ·{" "}
                 {over > 0 ? <span className="text-warn">{inr(over)} over your {inr(w.budget)} budget</span>
@@ -103,9 +103,9 @@ function Body() {
 
 function PlaceCard({ d, chosen, onChoose }: { d: DestinationCard; chosen: boolean; onChoose: () => void }) {
   return (
-    <article className={`card overflow-hidden ${chosen ? "border-2 border-maroon" : ""}`}>
+    <article className={`card overflow-hidden ${chosen ? "border-2 border-brand" : ""}`}>
       <div className="relative h-[100px] bg-[#e8d8c4]">
-        {chosen && <span className="absolute left-2.5 top-2.5 rounded-md bg-white px-2 py-1 text-[11px] font-bold text-maroon">Selected</span>}
+        {chosen && <span className="absolute left-2.5 top-2.5 rounded-md bg-white px-2 py-1 text-[11px] font-bold text-brand">Selected</span>}
       </div>
       <div className="px-4 py-3.5">
         <p className="font-serif text-2xl font-bold">{d.name}</p>
@@ -114,7 +114,7 @@ function PlaceCard({ d, chosen, onChoose }: { d: DestinationCard; chosen: boolea
           {inr(d.estimate.total)}{" "}
           <span className={`text-xs font-medium ${d.over_budget ? "text-warn" : "text-soft"}`}>{d.over_budget ? "over budget" : "estimated"}</span>
         </p>
-        <div className="mt-2 flex flex-col gap-1 text-xs text-[#4a382c]">
+        <div className="mt-2 flex flex-col gap-1 text-xs text-ink">
           <span>{d.month} weather: {d.weather}</span>
           <span>{d.travel}</span>
         </div>
@@ -127,8 +127,8 @@ function PlaceCard({ d, chosen, onChoose }: { d: DestinationCard; chosen: boolea
 function Line({ label, amount, pct, edited }: { label: string; amount: number; pct: number; edited: boolean }) {
   return (
     <>
-      <span>{label}{edited && <span className="ml-1.5 text-[11px] font-bold text-maroon">edited</span>}</span>
-      <div className="h-2.5 rounded-full bg-[#f1e8dc]"><div className="h-2.5 rounded-full bg-maroon" style={{ width: `${Math.max(pct, 2)}%` }} /></div>
+      <span>{label}{edited && <span className="ml-1.5 text-[11px] font-bold text-brand">edited</span>}</span>
+      <div className="h-2.5 rounded-full bg-[#f1e8dc]"><div className="h-2.5 rounded-full bg-brand" style={{ width: `${Math.max(pct, 2)}%` }} /></div>
       <span className="text-right font-bold">{inr(amount)}</span>
     </>
   );
@@ -137,8 +137,8 @@ function Line({ label, amount, pct, edited }: { label: string; amount: number; p
 function ProposalCard({ p, onApply }: { p: Proposal; onApply: () => Promise<void> }) {
   const [state, setState] = useState<"idle" | "applied">("idle");
   return (
-    <div className="rounded-[14px] border border-[#f0d9ae] bg-[#fff8ec] px-3.5 py-3 text-sm leading-relaxed">
-      <b className="block text-[13px] text-[#8a5a12]">{state === "applied" ? "Applied" : "Suggested change"}</b>
+    <div className="rounded-[14px] border border-[#f6d6bf] bg-blush px-3.5 py-3 text-sm leading-relaxed">
+      <b className="block text-[13px] text-brand-dark">{state === "applied" ? "Applied" : "Suggested change"}</b>
       <span className="mt-1 block">{p.summary}</span>
       <span className="mt-1 block">{p.name}: {inr(p.before_total)} → <b>{inr(p.after_total)}</b></span>
       {state === "idle" && (
