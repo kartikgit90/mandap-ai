@@ -82,8 +82,8 @@ function Body() {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap items-start gap-5">
-        <section className="flex-[999_1_520px] min-w-0">
+      <div className="mt-5 grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
+        <section className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             {FUNCTIONS.map((f) => (
               <button key={f} className="chip capitalize" aria-pressed={fn === f} onClick={() => setFn(f)}>{f}</button>
@@ -133,7 +133,7 @@ function Body() {
           )}
         </section>
 
-        <div className="flex-[1_1_340px] min-w-0 max-w-[440px]">
+        <div className="min-w-0">
           <ChatPanel
             title="Your AI stylist"
             subtitle="Only suggests pieces from verified brands"

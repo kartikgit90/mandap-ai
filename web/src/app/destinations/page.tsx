@@ -52,8 +52,8 @@ function Body() {
       <h1 className="font-serif text-[38px] font-bold leading-tight">Destination weddings</h1>
       <p className="mt-1 text-sm text-muted">{w.guests} guests · {w.days} days · {month} · total budget {inr(w.budget)}</p>
 
-      <div className="mt-5 flex flex-wrap items-start gap-5">
-        <section className="flex-[999_1_520px] min-w-0">
+      <div className="mt-5 grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
+        <section className="min-w-0">
           <h2 className="text-[17px] font-bold">Your shortlist</h2>
           <div className="mt-3 grid gap-3.5 grid-cols-[repeat(auto-fill,minmax(220px,1fr))]">
             {plan.shortlist.map((d) => (
@@ -85,7 +85,7 @@ function Body() {
           </div>
         </section>
 
-        <div className="flex-[1_1_340px] min-w-0 max-w-[440px]">
+        <div className="min-w-0">
           <ChatPanel
             title="Destination planner"
             subtitle="Budgets come from verified price bands"
