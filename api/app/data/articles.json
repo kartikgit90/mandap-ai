@@ -1,0 +1,15 @@
+{
+  "_note": "DEMO DATA. Article titles and summaries are placeholders written for the prototype, not real magazine content.",
+  "articles": [
+    {"id": "a-jewel-tones", "tier": "published", "issue": "Oct 2026", "title": "Jewel tones for the sangeet", "tags": ["sangeet", "emerald", "green", "colour"], "summary": "Emerald and deep green read richly under evening lights. Pair with polki or uncut stones and keep the neckline clean so the jewellery stands out."},
+    {"id": "a-sangeet-edit", "tier": "published", "issue": "Aug 2026", "title": "The sangeet edit", "tags": ["sangeet", "teal", "sequins", "modern"], "summary": "Shararas and lighter lehengas are the practical choice for dancing. Sequins catch stage lighting; choose heels with a block for comfort."},
+    {"id": "a-light-dancefloor", "tier": "published", "issue": "Oct 2026", "title": "Light for the dance floor", "tags": ["sangeet", "mehendi", "light", "mint"], "summary": "Pre-draped sarees and mirror work keep you comfortable through long functions. Oxidised silver suits pastel and mint palettes."},
+    {"id": "a-red-returns", "tier": "published", "issue": "Jun 2026", "title": "Red returns to the mandap", "tags": ["pheras", "red", "traditional"], "summary": "Classic red is back for the pheras. Heavier lehengas need early fittings; plan at least 14 to 16 weeks for hand embroidery."},
+    {"id": "a-reception-edit", "tier": "published", "issue": "Dec 2025", "title": "Reception looks that photograph well", "tags": ["reception", "ivory", "gold"], "summary": "Ivory and gold photograph beautifully under warm lights. Gown-lehenga hybrids are easier to move in for long receptions."},
+    {"id": "a-haldi-brights", "tier": "published", "issue": "Apr 2026", "title": "Haldi brights", "tags": ["haldi", "yellow", "floral"], "summary": "Choose fabrics you don't mind staining. Floral jewellery is light, cheap and photographs well."},
+    {"id": "a-pastels", "tier": "published", "issue": "Feb 2026", "title": "Pastels for day functions", "tags": ["mehendi", "haldi", "pastel", "pink"], "summary": "Pastel pinks and greens suit daytime mehendi. Gota work is light and breathable for outdoor settings."},
+    {"id": "a-groom-edit", "tier": "published", "issue": "Oct 2026", "title": "The groom's wardrobe, function by function", "tags": ["groom", "sherwani", "bandhgala"], "summary": "Match the bride's palette rather than her exact colour. Velvet bandhgalas work for winter evenings; linen for haldi."},
+    {"id": "a-udaipur-guide", "tier": "published", "issue": "Sep 2026", "title": "A guide to Udaipur weddings", "tags": ["destination", "udaipur", "palace"], "summary": "Lake-facing palaces book 9 to 12 months ahead for peak season (Nov to Feb). Boat transfers add to logistics; plan guest movement early."},
+    {"id": "a-goa-guide", "tier": "published", "issue": "Jan 2026", "title": "Beach weddings in Goa", "tags": ["destination", "goa", "beach"], "summary": "Sunset pheras are popular. Sound restrictions after 10 pm apply at many venues; plan the sangeet indoors or earlier."}
+  ]
+}

@@ -29,6 +29,9 @@ class Settings(BaseSettings):
 
     usd_to_inr: float = 85.0  # rough rate, only for showing costs in rupees
 
+    # firestore in the cloud; memory for tests and quick local runs
+    store_backend: Literal["firestore", "memory"] = "firestore"
+
     cors_origins: str = "http://localhost:3000"
     # Also allow our Firebase App Hosting site (address looks like
     # https://mandap-web--mandap-ai.<region>.hosted.app) and any local dev port.

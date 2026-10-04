@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app import llm
 from app.auth import CurrentUser, get_current_user, require_role
 from app.config import get_settings
+from app.routes import router
 
 settings = get_settings()
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -24,6 +25,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+app.include_router(router)
 
 
 @app.middleware("http")

@@ -1,0 +1,262 @@
+{
+ "_note": "DEMO DATA. Price bands are rough sample figures for the prototype, not quotes. Replace with editor-verified bands.",
+ "valid_until": "2027-03-31",
+ "destinations": [
+  {
+   "id": "udaipur",
+   "name": "Udaipur",
+   "tier": "verified",
+   "vibe": "Lake palaces and heritage hotels",
+   "tags": [
+    "palace",
+    "heritage",
+    "lake"
+   ],
+   "weather": {
+    "nov": "14-29C, dry",
+    "dec": "10-26C, dry",
+    "jan": "9-24C, dry",
+    "feb": "12-27C, dry",
+    "mar": "17-33C, dry"
+   },
+   "travel": "Direct flights from Delhi and Mumbai",
+   "article_id": "a-udaipur-guide",
+   "bands": {
+    "room_per_guest_night": [
+     2800,
+     3600
+    ],
+    "food_per_guest_day": [
+     1300,
+     1700
+    ],
+    "decor": [
+     600000,
+     800000
+    ],
+    "photo_ent": [
+     400000,
+     600000
+    ],
+    "travel_per_guest": [
+     2000,
+     2600
+    ],
+    "misc_pct": 0.07
+   }
+  },
+  {
+   "id": "jaipur",
+   "name": "Jaipur",
+   "tier": "verified",
+   "vibe": "Forts, havelis and garden venues",
+   "tags": [
+    "palace",
+    "heritage",
+    "fort"
+   ],
+   "weather": {
+    "nov": "13-29C, dry",
+    "dec": "9-24C, dry",
+    "jan": "8-22C, dry",
+    "feb": "10-25C, dry",
+    "mar": "15-31C, dry"
+   },
+   "travel": "Direct flights, or 5 hours by road from Delhi",
+   "article_id": null,
+   "bands": {
+    "room_per_guest_night": [
+     2200,
+     3000
+    ],
+    "food_per_guest_day": [
+     1100,
+     1500
+    ],
+    "decor": [
+     500000,
+     700000
+    ],
+    "photo_ent": [
+     350000,
+     550000
+    ],
+    "travel_per_guest": [
+     1200,
+     1800
+    ],
+    "misc_pct": 0.07
+   }
+  },
+  {
+   "id": "goa",
+   "name": "Goa",
+   "tier": "verified",
+   "vibe": "Beach resorts",
+   "tags": [
+    "beach",
+    "resort"
+   ],
+   "weather": {
+    "nov": "22-33C, dry",
+    "dec": "21-33C, dry",
+    "jan": "20-32C, dry",
+    "feb": "21-32C, dry",
+    "mar": "23-33C, dry"
+   },
+   "travel": "Direct flights from most metros",
+   "article_id": "a-goa-guide",
+   "bands": {
+    "room_per_guest_night": [
+     3200,
+     4200
+    ],
+    "food_per_guest_day": [
+     1500,
+     1900
+    ],
+    "decor": [
+     550000,
+     750000
+    ],
+    "photo_ent": [
+     400000,
+     600000
+    ],
+    "travel_per_guest": [
+     2400,
+     3200
+    ],
+    "misc_pct": 0.07
+   }
+  },
+  {
+   "id": "kerala",
+   "name": "Kerala (Kumarakom)",
+   "tier": "verified",
+   "vibe": "Backwater resorts",
+   "tags": [
+    "backwaters",
+    "resort",
+    "nature"
+   ],
+   "weather": {
+    "nov": "23-31C, some rain",
+    "dec": "22-32C, dry",
+    "jan": "22-32C, dry",
+    "feb": "23-33C, dry",
+    "mar": "24-34C, dry"
+   },
+   "travel": "Fly to Kochi, 1.5 hours by road",
+   "article_id": null,
+   "bands": {
+    "room_per_guest_night": [
+     2600,
+     3400
+    ],
+    "food_per_guest_day": [
+     1100,
+     1500
+    ],
+    "decor": [
+     450000,
+     650000
+    ],
+    "photo_ent": [
+     350000,
+     550000
+    ],
+    "travel_per_guest": [
+     2600,
+     3400
+    ],
+    "misc_pct": 0.07
+   }
+  },
+  {
+   "id": "jim-corbett",
+   "name": "Jim Corbett",
+   "tier": "verified",
+   "vibe": "Jungle and riverside resorts",
+   "tags": [
+    "nature",
+    "resort",
+    "forest"
+   ],
+   "weather": {
+    "nov": "10-27C, dry",
+    "dec": "6-23C, dry",
+    "jan": "5-21C, dry",
+    "feb": "8-24C, dry",
+    "mar": "12-30C, dry"
+   },
+   "travel": "6 hours by road from Delhi",
+   "article_id": null,
+   "bands": {
+    "room_per_guest_night": [
+     2000,
+     2800
+    ],
+    "food_per_guest_day": [
+     1000,
+     1400
+    ],
+    "decor": [
+     400000,
+     600000
+    ],
+    "photo_ent": [
+     300000,
+     500000
+    ],
+    "travel_per_guest": [
+     1000,
+     1600
+    ],
+    "misc_pct": 0.07
+   }
+  },
+  {
+   "id": "mussoorie",
+   "name": "Mussoorie",
+   "tier": "verified",
+   "vibe": "Hill-station heritage hotels",
+   "tags": [
+    "hills",
+    "heritage"
+   ],
+   "weather": {
+    "nov": "7-19C, dry",
+    "dec": "3-15C, cold",
+    "jan": "1-12C, cold",
+    "feb": "3-14C, cold",
+    "mar": "7-19C, dry"
+   },
+   "travel": "Fly to Dehradun, 1.5 hours by road",
+   "article_id": null,
+   "bands": {
+    "room_per_guest_night": [
+     2200,
+     3000
+    ],
+    "food_per_guest_day": [
+     1000,
+     1400
+    ],
+    "decor": [
+     400000,
+     600000
+    ],
+    "photo_ent": [
+     300000,
+     500000
+    ],
+    "travel_per_guest": [
+     1800,
+     2400
+    ],
+    "misc_pct": 0.07
+   }
+  }
+ ]
+}
