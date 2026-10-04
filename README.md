@@ -1,4 +1,4 @@
-# Mandap AI
+# Wedding Affair AI Planner
 
 **An AI wedding planning prototype built for Wedding Affair.**
 It turns the magazine's content and advertiser network into two working AI services for couples.
@@ -12,6 +12,8 @@ It turns the magazine's content and advertiser network into two working AI servi
 | **Shop the Look** | An AI stylist builds complete looks (outfit, jewellery, accessories) for each function from brands featured in the magazine, within the couple's budget, checks delivery time against the wedding date, and links each look to the issue it appeared in. | Sending an enquiry to a brand. The agent only drafts it. |
 | **Destination weddings** | A destination planner compares places for the couple's guest count and month, estimates the budget line by line from verified price bands, and suggests concrete changes to bring it under budget. | Applying a change to the plan. The agent only proposes it. |
 
+| **Knowledge base** (magazine team) | Editors upload articles and fact sheets (paste, .txt, .md, .pdf) and tag each with a trust tier. Documents are split into passages and indexed by meaning (RAG); the agents answer from them and cite the source. A built-in tester shows exactly what the AI receives for a question and what the tier rule held back. | Tier changes and uploads are editor-only. |
+
 Other services (vendors, budget, checklist, astrology, honeymoon, beauty, home and gifting) appear as "Coming soon".
 
 ## Why it matters for the magazine
@@ -24,7 +26,8 @@ Other services (vendors, budget, checklist, astrology, honeymoon, beauty, home a
 
 - **Knowledge tiers.** Every piece of knowledge is tagged:
   `verified` (editor-approved facts), `published` (articles), `internal` (e.g. brand commissions), `confidential` (contracts, contacts).
-  Couples and the AI only ever see `verified` and `published`. This is enforced in code (`api/app/knowledge.py`) and covered by tests.
+  Couples and the AI only ever see `verified` and `published`. This is enforced in code (`api/app/knowledge.py`, `api/app/rag.py`): Firestore filters on the tier before the similarity search, and the code checks it again afterwards. Covered by tests.
+- **Grounded answers (RAG).** Style and destination advice comes from the magazine's own passages, retrieved by meaning with Google embeddings and Firestore vector search. Weak matches are dropped, so the AI says it doesn't know rather than guessing.
 - **No made-up products or prices.** The stylist can only show products returned by the catalogue tool; looks are re-priced on the server.
 - **No made-up budgets.** Destination budgets are calculated in code from verified price bands, not by the AI.
 - **Human approval.** Agents create drafts and proposals; only the couple's button press sends or applies them.
@@ -39,7 +42,7 @@ Next.js web app (Firebase App Hosting)
 Python FastAPI on Cloud Run (Mumbai)
    ├── Auth: Firebase ID tokens, roles (couple / editor / admin)
    ├── Agents: Claude tool use (stylist, destination planner)
-   ├── Knowledge base with trust tiers
+   ├── Knowledge base with trust tiers + RAG (Google embeddings, Firestore vector search)
    └── Firestore (Mumbai): looks, enquiries, plans per couple
         │
         ▼
@@ -52,21 +55,24 @@ Claude (Haiku 4.5) via Anthropic API, switchable to Google Vertex AI with one se
 | Backend | Python, FastAPI, Cloud Run (asia-south1) |
 | AI | Claude with tool use; prompt caching; provider switch (`LLM_PROVIDER`) |
 | Data | Firestore (asia-south1), Cloud Storage |
-| Auth | Firebase Auth (Google, email) |
+| RAG | `gemini-embedding-001` on Vertex AI (768 dims), Firestore vector index, ~500-char passages |
+| Auth | Firebase Auth (Google, email, one-click guest demo) |
 | Secrets | Google Secret Manager |
 | Deploy | Push to `main` → Cloud Build → Cloud Run, and App Hosting for the web |
 
 ## Code map
 
 ```
-api/app/knowledge.py         knowledge base + tier rules + budget maths
+api/app/knowledge.py         catalogue, tier rules, budget maths
+api/app/rag.py               RAG: chunking, embeddings, vector search, tier filter
+api/app/kb_routes.py         knowledge base console API (upload, re-tier, search tester)
 api/app/agents/stylist.py    Shop the Look agent: tools and prompt
 api/app/agents/destination.py  Destination agent: tools and prompt
 api/app/llm.py               Claude connection, agent loop, limits, cost tracking
 api/app/routes.py            API endpoints
 api/app/data/                demo catalogue, articles, destination price bands
-api/tests/                   26 tests: tiers, approval gates, limits, auth
-web/src/app/                 Home, Shop the Look, Destination weddings pages
+api/tests/                   36 tests: tiers, RAG, approval gates, limits, auth
+web/src/app/                 Home, Shop the Look, Destination weddings, Knowledge base pages
 docs/decisions.md            every decision and why
 ```
 
@@ -76,7 +82,7 @@ docs/decisions.md            every decision and why
 # backend
 cd api && python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt -r requirements-dev.txt
-STORE_BACKEND=memory ANTHROPIC_API_KEY=... uvicorn app.main:app --reload --port 8080
+STORE_BACKEND=memory EMBED_BACKEND=hash ANTHROPIC_API_KEY=... uvicorn app.main:app --reload --port 8080
 pytest
 
 # web
