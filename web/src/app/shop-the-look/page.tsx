@@ -155,12 +155,24 @@ function LookCard({ look, budget, onSave, onDelete }: { look: Look; budget: numb
   const colors = Array.from(new Set(look.pieces.flatMap((p) => p.colors))).slice(0, 4);
   const over = look.total > budget;
   const seen = look.pieces.find((p) => p.seen_in)?.seen_in;
+  // Hero photo: the outfit's photo first, otherwise any piece that has one.
+  const hero = look.pieces.find((p) => p.kind === "outfit" && p.image) ?? look.pieces.find((p) => p.image);
+  const [heroOk, setHeroOk] = useState(true);
 
   return (
     <article className={`card overflow-hidden ${look.top_pick ? "border-2 border-maroon" : ""}`}>
-      <div className="relative h-[150px] flex">
-        {colors.map((c) => <div key={c} className="flex-1" style={{ background: SWATCH[c] ?? "#e9d9c6" }} />)}
+      <div className="relative h-[260px] flex bg-[#e9d9c6]">
+        {hero?.image && heroOk ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={photo(hero.image, 600, 780)} alt={hero.name} loading="lazy" onError={() => setHeroOk(false)}
+            className="h-full w-full object-cover object-top" />
+        ) : (
+          colors.map((c) => <div key={c} className="flex-1" style={{ background: SWATCH[c] ?? "#e9d9c6" }} />)
+        )}
         {look.top_pick && <span className="absolute left-2.5 top-2.5 rounded-md bg-white px-2 py-1 text-[11px] font-bold text-maroon">Stylist&rsquo;s pick</span>}
+        {hero?.image_credit && heroOk && (
+          <span className="absolute bottom-1.5 right-2 rounded bg-black/45 px-1.5 py-0.5 text-[10px] text-white">Photo: {hero.image_credit}</span>
+        )}
       </div>
       <div className="p-4">
         <p className="font-serif text-[22px] font-bold leading-tight">{look.title}</p>
@@ -168,8 +180,9 @@ function LookCard({ look, budget, onSave, onDelete }: { look: Look; budget: numb
         {look.why && <p className="mt-2 text-[13px] leading-snug text-muted">{look.why}</p>}
         <div className="mt-3 flex flex-col gap-2 text-[13px]">
           {look.pieces.map((p) => (
-            <div key={p.id} className="flex justify-between gap-2">
-              <span><b>{p.name}</b> · {p.brand}</span><span className="whitespace-nowrap">{inr(p.price)}</span>
+            <div key={p.id} className="flex items-center justify-between gap-2.5">
+              <Thumb piece={p} />
+              <span className="flex-1"><b>{p.name}</b> · {p.brand}</span><span className="whitespace-nowrap">{inr(p.price)}</span>
             </div>
           ))}
         </div>
@@ -190,6 +203,23 @@ function LookCard({ look, budget, onSave, onDelete }: { look: Look; budget: numb
       </div>
     </article>
   );
+}
+
+/** Unsplash image at a sensible size for the card. */
+function photo(url: string, w: number, h: number) {
+  return `${url}?w=${w}&h=${h}&fit=crop&crop=top&auto=format&q=70`;
+}
+
+function Thumb({ piece }: { piece: Look["pieces"][number] }) {
+  const [ok, setOk] = useState(true);
+  if (piece.image && ok) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={photo(piece.image, 96, 96)} alt="" loading="lazy" onError={() => setOk(false)}
+        className="h-10 w-10 flex-none rounded-lg object-cover" />
+    );
+  }
+  return <span className="h-10 w-10 flex-none rounded-lg" style={{ background: SWATCH[piece.colors[0]] ?? "#e9d9c6" }} />;
 }
 
 function DraftCards({ drafts, onSend, onDiscard }: { drafts: Enquiry[]; onSend: (id: string) => Promise<void>; onDiscard: (id: string) => Promise<void> }) {

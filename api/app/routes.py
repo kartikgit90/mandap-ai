@@ -96,7 +96,7 @@ def save_look(body: SaveLook, user: CurrentUser = Depends(get_current_user)):
         raise HTTPException(400, "Look has unknown pieces")
     look = {k: body.look.get(k) for k in ("title", "function", "side", "why")}
     look["pieces"] = [{"id": p["id"], "name": p["name"], "brand": p["brand"], "kind": p["kind"], "price": p["price"],
-                       "colors": p["colors"], "seen_in": p.get("seen_in")} for p in pieces]
+                       "colors": p["colors"], "seen_in": p.get("seen_in"), "image": p.get("image"), "image_credit": p.get("image_credit")} for p in pieces]
     look["total"] = sum(p["price"] for p in pieces)
     look["created_at"] = now()
     return store().put(user.uid, "looks", new_id(), look)

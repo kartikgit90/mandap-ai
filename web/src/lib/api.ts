@@ -61,6 +61,8 @@ export type Piece = {
   colors: string[];
   lead_time_weeks?: number;
   seen_in?: { id: string; title: string; issue: string } | null;
+  image?: string | null;
+  image_credit?: string | null;
 };
 
 export type Look = {

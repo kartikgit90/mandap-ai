@@ -1,47 +1,631 @@
 {
-  "_note": "DEMO DATA. Brand names, products and prices are invented for the prototype. Replace with the magazine's real advertiser catalogue.",
-  "brands": [
-    {"id": "b-noor", "name": "Atelier Noor", "category": "bridal couture", "tier": "verified",
-     "internal": {"tier": "internal", "commission_pct": 8, "account_manager": "Sales team"},
-     "contact": {"tier": "confidential", "email": "orders@example-noor.test", "phone": "+91-00000-00001"}},
-    {"id": "b-raag", "name": "Raag Studio", "category": "festive wear", "tier": "verified",
-     "internal": {"tier": "internal", "commission_pct": 10, "account_manager": "Sales team"},
-     "contact": {"tier": "confidential", "email": "hello@example-raag.test", "phone": "+91-00000-00002"}},
-    {"id": "b-kesar", "name": "Kesar House", "category": "jewellery", "tier": "verified",
-     "internal": {"tier": "internal", "commission_pct": 6, "account_manager": "Sales team"},
-     "contact": {"tier": "confidential", "email": "studio@example-kesar.test", "phone": "+91-00000-00003"}},
-    {"id": "b-tara", "name": "Tara Fine Jewels", "category": "jewellery", "tier": "verified",
-     "internal": {"tier": "internal", "commission_pct": 7, "account_manager": "Sales team"},
-     "contact": {"tier": "confidential", "email": "care@example-tara.test", "phone": "+91-00000-00004"}},
-    {"id": "b-moti", "name": "Moti Lane", "category": "accessories", "tier": "verified",
-     "internal": {"tier": "internal", "commission_pct": 12, "account_manager": "Sales team"},
-     "contact": {"tier": "confidential", "email": "shop@example-moti.test", "phone": "+91-00000-00005"}},
-    {"id": "b-vansh", "name": "Vansh Menswear", "category": "groom wear", "tier": "verified",
-     "internal": {"tier": "internal", "commission_pct": 9, "account_manager": "Sales team"},
-     "contact": {"tier": "confidential", "email": "groom@example-vansh.test", "phone": "+91-00000-00006"}}
-  ],
-  "products": [
-    {"id": "p01", "brand_id": "b-noor", "side": "bride", "kind": "outfit", "name": "Emerald silk lehenga with zardozi", "functions": ["sangeet", "reception"], "colors": ["emerald", "green", "gold"], "style": ["modern", "sparkle", "light"], "price": 160000, "lead_time_weeks": 10, "weight_note": "about 4 kg", "article_id": "a-jewel-tones"},
-    {"id": "p02", "brand_id": "b-noor", "side": "bride", "kind": "outfit", "name": "Classic red bridal lehenga, hand embroidered", "functions": ["pheras"], "colors": ["red", "gold"], "style": ["traditional", "heavy"], "price": 340000, "lead_time_weeks": 16, "weight_note": "about 9 kg", "article_id": "a-red-returns"},
-    {"id": "p03", "brand_id": "b-noor", "side": "bride", "kind": "outfit", "name": "Ivory and gold reception gown-lehenga", "functions": ["reception"], "colors": ["ivory", "gold"], "style": ["modern", "sparkle"], "price": 210000, "lead_time_weeks": 12, "weight_note": "about 6 kg", "article_id": "a-reception-edit"},
-    {"id": "p04", "brand_id": "b-raag", "side": "bride", "kind": "outfit", "name": "Teal sequin sharara set", "functions": ["sangeet", "cocktail"], "colors": ["teal", "blue", "silver"], "style": ["modern", "sparkle", "light"], "price": 120000, "lead_time_weeks": 6, "weight_note": "about 3 kg", "article_id": "a-sangeet-edit"},
-    {"id": "p05", "brand_id": "b-raag", "side": "bride", "kind": "outfit", "name": "Mint pre-draped saree with mirror work", "functions": ["sangeet", "mehendi"], "colors": ["mint", "green", "silver"], "style": ["modern", "light"], "price": 95000, "lead_time_weeks": 5, "weight_note": "about 2 kg", "article_id": "a-light-dancefloor"},
-    {"id": "p06", "brand_id": "b-raag", "side": "bride", "kind": "outfit", "name": "Marigold yellow anarkali", "functions": ["haldi"], "colors": ["yellow", "marigold"], "style": ["traditional", "light"], "price": 48000, "lead_time_weeks": 4, "weight_note": "about 1.5 kg", "article_id": "a-haldi-brights"},
-    {"id": "p07", "brand_id": "b-raag", "side": "bride", "kind": "outfit", "name": "Pastel pink gota lehenga", "functions": ["mehendi", "haldi"], "colors": ["pink", "pastel"], "style": ["traditional", "light"], "price": 85000, "lead_time_weeks": 6, "weight_note": "about 3 kg", "article_id": "a-pastels"},
-    {"id": "p08", "brand_id": "b-noor", "side": "bride", "kind": "outfit", "name": "Parrot green bandhani lehenga", "functions": ["mehendi"], "colors": ["green", "parrot"], "style": ["traditional", "light"], "price": 110000, "lead_time_weeks": 8, "weight_note": "about 3.5 kg", "article_id": "a-pastels"},
-    {"id": "p09", "brand_id": "b-kesar", "side": "bride", "kind": "jewellery", "name": "Polki choker set", "functions": ["sangeet", "reception", "pheras"], "colors": ["gold", "emerald", "green"], "style": ["traditional", "sparkle"], "price": 55000, "lead_time_weeks": 3, "article_id": "a-jewel-tones"},
-    {"id": "p10", "brand_id": "b-kesar", "side": "bride", "kind": "jewellery", "name": "Kundan bridal set with maang tikka", "functions": ["pheras"], "colors": ["gold", "red"], "style": ["traditional", "heavy"], "price": 180000, "lead_time_weeks": 6, "article_id": "a-red-returns"},
-    {"id": "p11", "brand_id": "b-tara", "side": "bride", "kind": "jewellery", "name": "Diamond statement earrings", "functions": ["sangeet", "reception", "cocktail"], "colors": ["silver", "white", "teal", "blue"], "style": ["modern", "sparkle"], "price": 32000, "lead_time_weeks": 2, "article_id": "a-sangeet-edit"},
-    {"id": "p12", "brand_id": "b-tara", "side": "bride", "kind": "jewellery", "name": "Silver oxidised jhumkas", "functions": ["mehendi", "sangeet", "haldi"], "colors": ["silver", "mint", "pink"], "style": ["light", "traditional"], "price": 28000, "lead_time_weeks": 1, "article_id": "a-light-dancefloor"},
-    {"id": "p13", "brand_id": "b-tara", "side": "bride", "kind": "jewellery", "name": "Floral haldi jewellery set", "functions": ["haldi"], "colors": ["yellow", "marigold", "white"], "style": ["light"], "price": 6000, "lead_time_weeks": 1, "article_id": "a-haldi-brights"},
-    {"id": "p14", "brand_id": "b-moti", "side": "bride", "kind": "accessory", "name": "Embroidered potli and juttis", "functions": ["sangeet", "mehendi", "pheras", "reception"], "colors": ["gold", "emerald", "red", "pink"], "style": ["traditional"], "price": 18000, "lead_time_weeks": 2, "article_id": "a-jewel-tones"},
-    {"id": "p15", "brand_id": "b-moti", "side": "bride", "kind": "accessory", "name": "Embellished block heels", "functions": ["sangeet", "reception", "cocktail"], "colors": ["silver", "gold", "teal"], "style": ["modern", "sparkle"], "price": 14000, "lead_time_weeks": 2, "article_id": "a-sangeet-edit"},
-    {"id": "p16", "brand_id": "b-moti", "side": "bride", "kind": "accessory", "name": "Mirror-work clutch", "functions": ["mehendi", "sangeet", "haldi"], "colors": ["silver", "mint", "yellow"], "style": ["light"], "price": 12000, "lead_time_weeks": 1, "article_id": "a-light-dancefloor"},
-    {"id": "p17", "brand_id": "b-vansh", "side": "groom", "kind": "outfit", "name": "Ivory sherwani with gold buttons", "functions": ["pheras"], "colors": ["ivory", "gold"], "style": ["traditional"], "price": 145000, "lead_time_weeks": 8, "article_id": "a-groom-edit"},
-    {"id": "p18", "brand_id": "b-vansh", "side": "groom", "kind": "outfit", "name": "Emerald velvet bandhgala", "functions": ["sangeet", "reception"], "colors": ["emerald", "green"], "style": ["modern"], "price": 72000, "lead_time_weeks": 5, "article_id": "a-groom-edit"},
-    {"id": "p19", "brand_id": "b-vansh", "side": "groom", "kind": "outfit", "name": "Yellow linen kurta set", "functions": ["haldi", "mehendi"], "colors": ["yellow", "marigold"], "style": ["light"], "price": 18000, "lead_time_weeks": 2, "article_id": "a-groom-edit"},
-    {"id": "p20", "brand_id": "b-vansh", "side": "groom", "kind": "accessory", "name": "Hand-tied safa with brooch", "functions": ["pheras"], "colors": ["red", "gold", "ivory"], "style": ["traditional"], "price": 15000, "lead_time_weeks": 2, "article_id": "a-groom-edit"},
-    {"id": "p21", "brand_id": "b-vansh", "side": "groom", "kind": "accessory", "name": "Embroidered mojaris", "functions": ["pheras", "sangeet", "reception"], "colors": ["gold", "ivory", "emerald"], "style": ["traditional"], "price": 9000, "lead_time_weeks": 1, "article_id": "a-groom-edit"},
-    {"id": "p22", "brand_id": "b-kesar", "side": "groom", "kind": "jewellery", "name": "Kundan kalgi and pearl mala", "functions": ["pheras"], "colors": ["gold", "ivory"], "style": ["traditional"], "price": 42000, "lead_time_weeks": 3, "article_id": "a-groom-edit"}
-  ]
+ "_note": "DEMO DATA. Brand names, products and prices are invented for the prototype. Replace with the magazine's real advertiser catalogue. Photos: Unsplash (Unsplash License), used as stand-ins; they do not show the listed brands.",
+ "brands": [
+  {
+   "id": "b-noor",
+   "name": "Atelier Noor",
+   "category": "bridal couture",
+   "tier": "verified",
+   "internal": {
+    "tier": "internal",
+    "commission_pct": 8,
+    "account_manager": "Sales team"
+   },
+   "contact": {
+    "tier": "confidential",
+    "email": "orders@example-noor.test",
+    "phone": "+91-00000-00001"
+   }
+  },
+  {
+   "id": "b-raag",
+   "name": "Raag Studio",
+   "category": "festive wear",
+   "tier": "verified",
+   "internal": {
+    "tier": "internal",
+    "commission_pct": 10,
+    "account_manager": "Sales team"
+   },
+   "contact": {
+    "tier": "confidential",
+    "email": "hello@example-raag.test",
+    "phone": "+91-00000-00002"
+   }
+  },
+  {
+   "id": "b-kesar",
+   "name": "Kesar House",
+   "category": "jewellery",
+   "tier": "verified",
+   "internal": {
+    "tier": "internal",
+    "commission_pct": 6,
+    "account_manager": "Sales team"
+   },
+   "contact": {
+    "tier": "confidential",
+    "email": "studio@example-kesar.test",
+    "phone": "+91-00000-00003"
+   }
+  },
+  {
+   "id": "b-tara",
+   "name": "Tara Fine Jewels",
+   "category": "jewellery",
+   "tier": "verified",
+   "internal": {
+    "tier": "internal",
+    "commission_pct": 7,
+    "account_manager": "Sales team"
+   },
+   "contact": {
+    "tier": "confidential",
+    "email": "care@example-tara.test",
+    "phone": "+91-00000-00004"
+   }
+  },
+  {
+   "id": "b-moti",
+   "name": "Moti Lane",
+   "category": "accessories",
+   "tier": "verified",
+   "internal": {
+    "tier": "internal",
+    "commission_pct": 12,
+    "account_manager": "Sales team"
+   },
+   "contact": {
+    "tier": "confidential",
+    "email": "shop@example-moti.test",
+    "phone": "+91-00000-00005"
+   }
+  },
+  {
+   "id": "b-vansh",
+   "name": "Vansh Menswear",
+   "category": "groom wear",
+   "tier": "verified",
+   "internal": {
+    "tier": "internal",
+    "commission_pct": 9,
+    "account_manager": "Sales team"
+   },
+   "contact": {
+    "tier": "confidential",
+    "email": "groom@example-vansh.test",
+    "phone": "+91-00000-00006"
+   }
+  }
+ ],
+ "products": [
+  {
+   "id": "p01",
+   "brand_id": "b-noor",
+   "side": "bride",
+   "kind": "outfit",
+   "name": "Emerald silk lehenga with zardozi",
+   "functions": [
+    "sangeet",
+    "reception"
+   ],
+   "colors": [
+    "emerald",
+    "green",
+    "gold"
+   ],
+   "style": [
+    "modern",
+    "sparkle",
+    "light"
+   ],
+   "price": 160000,
+   "lead_time_weeks": 10,
+   "weight_note": "about 4 kg",
+   "article_id": "a-jewel-tones",
+   "image": "https://images.unsplash.com/photo-1619715613791-89d35b51ff81",
+   "image_credit": "Sabesh Photography LTD / Unsplash"
+  },
+  {
+   "id": "p02",
+   "brand_id": "b-noor",
+   "side": "bride",
+   "kind": "outfit",
+   "name": "Classic red bridal lehenga, hand embroidered",
+   "functions": [
+    "pheras"
+   ],
+   "colors": [
+    "red",
+    "gold"
+   ],
+   "style": [
+    "traditional",
+    "heavy"
+   ],
+   "price": 340000,
+   "lead_time_weeks": 16,
+   "weight_note": "about 9 kg",
+   "article_id": "a-red-returns",
+   "image": "https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9",
+   "image_credit": "Alok Verma / Unsplash"
+  },
+  {
+   "id": "p03",
+   "brand_id": "b-noor",
+   "side": "bride",
+   "kind": "outfit",
+   "name": "Ivory and gold reception gown-lehenga",
+   "functions": [
+    "reception"
+   ],
+   "colors": [
+    "ivory",
+    "gold"
+   ],
+   "style": [
+    "modern",
+    "sparkle"
+   ],
+   "price": 210000,
+   "lead_time_weeks": 12,
+   "weight_note": "about 6 kg",
+   "article_id": "a-reception-edit",
+   "image": "https://images.unsplash.com/photo-1601432093209-8af1fd74b054",
+   "image_credit": "Bernie Almanzar / Unsplash"
+  },
+  {
+   "id": "p04",
+   "brand_id": "b-raag",
+   "side": "bride",
+   "kind": "outfit",
+   "name": "Teal sequin sharara set",
+   "functions": [
+    "sangeet",
+    "cocktail"
+   ],
+   "colors": [
+    "teal",
+    "blue",
+    "silver"
+   ],
+   "style": [
+    "modern",
+    "sparkle",
+    "light"
+   ],
+   "price": 120000,
+   "lead_time_weeks": 6,
+   "weight_note": "about 3 kg",
+   "article_id": "a-sangeet-edit",
+   "image": "https://images.unsplash.com/photo-1728119884594-51af35d32c1b",
+   "image_credit": "PRAHANT STUDIO / Unsplash"
+  },
+  {
+   "id": "p05",
+   "brand_id": "b-raag",
+   "side": "bride",
+   "kind": "outfit",
+   "name": "Mint pre-draped saree with mirror work",
+   "functions": [
+    "sangeet",
+    "mehendi"
+   ],
+   "colors": [
+    "mint",
+    "green",
+    "silver"
+   ],
+   "style": [
+    "modern",
+    "light"
+   ],
+   "price": 95000,
+   "lead_time_weeks": 5,
+   "weight_note": "about 2 kg",
+   "article_id": "a-light-dancefloor",
+   "image": "https://images.unsplash.com/photo-1688382654723-a7366006519b",
+   "image_credit": "Ardy Arjun / Unsplash"
+  },
+  {
+   "id": "p06",
+   "brand_id": "b-raag",
+   "side": "bride",
+   "kind": "outfit",
+   "name": "Marigold yellow anarkali",
+   "functions": [
+    "haldi"
+   ],
+   "colors": [
+    "yellow",
+    "marigold"
+   ],
+   "style": [
+    "traditional",
+    "light"
+   ],
+   "price": 48000,
+   "lead_time_weeks": 4,
+   "weight_note": "about 1.5 kg",
+   "article_id": "a-haldi-brights",
+   "image": "https://images.unsplash.com/photo-1698460918119-7359a8a945a0",
+   "image_credit": "ARTO SURAJ / Unsplash"
+  },
+  {
+   "id": "p07",
+   "brand_id": "b-raag",
+   "side": "bride",
+   "kind": "outfit",
+   "name": "Pastel pink gota lehenga",
+   "functions": [
+    "mehendi",
+    "haldi"
+   ],
+   "colors": [
+    "pink",
+    "pastel"
+   ],
+   "style": [
+    "traditional",
+    "light"
+   ],
+   "price": 85000,
+   "lead_time_weeks": 6,
+   "weight_note": "about 3 kg",
+   "article_id": "a-pastels",
+   "image": "https://images.unsplash.com/photo-1684868265715-03e19a3e0e00",
+   "image_credit": "gurpreet singh / Unsplash"
+  },
+  {
+   "id": "p08",
+   "brand_id": "b-noor",
+   "side": "bride",
+   "kind": "outfit",
+   "name": "Parrot green bandhani lehenga",
+   "functions": [
+    "mehendi"
+   ],
+   "colors": [
+    "green",
+    "parrot"
+   ],
+   "style": [
+    "traditional",
+    "light"
+   ],
+   "price": 110000,
+   "lead_time_weeks": 8,
+   "weight_note": "about 3.5 kg",
+   "article_id": "a-pastels",
+   "image": "https://images.unsplash.com/photo-1684814070823-97e0b9e99c69",
+   "image_credit": "kabita Darlami / Unsplash"
+  },
+  {
+   "id": "p09",
+   "brand_id": "b-kesar",
+   "side": "bride",
+   "kind": "jewellery",
+   "name": "Polki choker set",
+   "functions": [
+    "sangeet",
+    "reception",
+    "pheras"
+   ],
+   "colors": [
+    "gold",
+    "emerald",
+    "green"
+   ],
+   "style": [
+    "traditional",
+    "sparkle"
+   ],
+   "price": 55000,
+   "lead_time_weeks": 3,
+   "article_id": "a-jewel-tones",
+   "image": "https://images.unsplash.com/photo-1570055349452-29232699cc63",
+   "image_credit": "AMISH THAKKAR / Unsplash"
+  },
+  {
+   "id": "p10",
+   "brand_id": "b-kesar",
+   "side": "bride",
+   "kind": "jewellery",
+   "name": "Kundan bridal set with maang tikka",
+   "functions": [
+    "pheras"
+   ],
+   "colors": [
+    "gold",
+    "red"
+   ],
+   "style": [
+    "traditional",
+    "heavy"
+   ],
+   "price": 180000,
+   "lead_time_weeks": 6,
+   "article_id": "a-red-returns",
+   "image": "https://images.unsplash.com/photo-1600685890506-593fdf55949b",
+   "image_credit": "Aayush Rawat / Unsplash"
+  },
+  {
+   "id": "p11",
+   "brand_id": "b-tara",
+   "side": "bride",
+   "kind": "jewellery",
+   "name": "Diamond statement earrings",
+   "functions": [
+    "sangeet",
+    "reception",
+    "cocktail"
+   ],
+   "colors": [
+    "silver",
+    "white",
+    "teal",
+    "blue"
+   ],
+   "style": [
+    "modern",
+    "sparkle"
+   ],
+   "price": 32000,
+   "lead_time_weeks": 2,
+   "article_id": "a-sangeet-edit",
+   "image": "https://images.unsplash.com/photo-1671642883395-0ab89c3ac890",
+   "image_credit": "fatemeh zakeri / Unsplash"
+  },
+  {
+   "id": "p12",
+   "brand_id": "b-tara",
+   "side": "bride",
+   "kind": "jewellery",
+   "name": "Silver oxidised jhumkas",
+   "functions": [
+    "mehendi",
+    "sangeet",
+    "haldi"
+   ],
+   "colors": [
+    "silver",
+    "mint",
+    "pink"
+   ],
+   "style": [
+    "light",
+    "traditional"
+   ],
+   "price": 28000,
+   "lead_time_weeks": 1,
+   "article_id": "a-light-dancefloor",
+   "image": "https://images.unsplash.com/photo-1701450723521-788008974862",
+   "image_credit": "Kavita Shringi / Unsplash"
+  },
+  {
+   "id": "p13",
+   "brand_id": "b-tara",
+   "side": "bride",
+   "kind": "jewellery",
+   "name": "Floral haldi jewellery set",
+   "functions": [
+    "haldi"
+   ],
+   "colors": [
+    "yellow",
+    "marigold",
+    "white"
+   ],
+   "style": [
+    "light"
+   ],
+   "price": 6000,
+   "lead_time_weeks": 1,
+   "article_id": "a-haldi-brights",
+   "image": "https://images.unsplash.com/photo-1681717075175-19feb7a6f664",
+   "image_credit": "Arun Prakash / Unsplash"
+  },
+  {
+   "id": "p14",
+   "brand_id": "b-moti",
+   "side": "bride",
+   "kind": "accessory",
+   "name": "Embroidered potli and juttis",
+   "functions": [
+    "sangeet",
+    "mehendi",
+    "pheras",
+    "reception"
+   ],
+   "colors": [
+    "gold",
+    "emerald",
+    "red",
+    "pink"
+   ],
+   "style": [
+    "traditional"
+   ],
+   "price": 18000,
+   "lead_time_weeks": 2,
+   "article_id": "a-jewel-tones"
+  },
+  {
+   "id": "p15",
+   "brand_id": "b-moti",
+   "side": "bride",
+   "kind": "accessory",
+   "name": "Embellished block heels",
+   "functions": [
+    "sangeet",
+    "reception",
+    "cocktail"
+   ],
+   "colors": [
+    "silver",
+    "gold",
+    "teal"
+   ],
+   "style": [
+    "modern",
+    "sparkle"
+   ],
+   "price": 14000,
+   "lead_time_weeks": 2,
+   "article_id": "a-sangeet-edit"
+  },
+  {
+   "id": "p16",
+   "brand_id": "b-moti",
+   "side": "bride",
+   "kind": "accessory",
+   "name": "Mirror-work clutch",
+   "functions": [
+    "mehendi",
+    "sangeet",
+    "haldi"
+   ],
+   "colors": [
+    "silver",
+    "mint",
+    "yellow"
+   ],
+   "style": [
+    "light"
+   ],
+   "price": 12000,
+   "lead_time_weeks": 1,
+   "article_id": "a-light-dancefloor"
+  },
+  {
+   "id": "p17",
+   "brand_id": "b-vansh",
+   "side": "groom",
+   "kind": "outfit",
+   "name": "Ivory sherwani with gold buttons",
+   "functions": [
+    "pheras"
+   ],
+   "colors": [
+    "ivory",
+    "gold"
+   ],
+   "style": [
+    "traditional"
+   ],
+   "price": 145000,
+   "lead_time_weeks": 8,
+   "article_id": "a-groom-edit",
+   "image": "https://images.unsplash.com/photo-1760080838961-4208536db385",
+   "image_credit": "Ahmed Syed / Unsplash"
+  },
+  {
+   "id": "p18",
+   "brand_id": "b-vansh",
+   "side": "groom",
+   "kind": "outfit",
+   "name": "Emerald velvet bandhgala",
+   "functions": [
+    "sangeet",
+    "reception"
+   ],
+   "colors": [
+    "emerald",
+    "green"
+   ],
+   "style": [
+    "modern"
+   ],
+   "price": 72000,
+   "lead_time_weeks": 5,
+   "article_id": "a-groom-edit",
+   "image": "https://images.unsplash.com/photo-1744804298516-991bf12847c8",
+   "image_credit": "Yogesh Shinde / Unsplash"
+  },
+  {
+   "id": "p19",
+   "brand_id": "b-vansh",
+   "side": "groom",
+   "kind": "outfit",
+   "name": "Yellow linen kurta set",
+   "functions": [
+    "haldi",
+    "mehendi"
+   ],
+   "colors": [
+    "yellow",
+    "marigold"
+   ],
+   "style": [
+    "light"
+   ],
+   "price": 18000,
+   "lead_time_weeks": 2,
+   "article_id": "a-groom-edit"
+  },
+  {
+   "id": "p20",
+   "brand_id": "b-vansh",
+   "side": "groom",
+   "kind": "accessory",
+   "name": "Hand-tied safa with brooch",
+   "functions": [
+    "pheras"
+   ],
+   "colors": [
+    "red",
+    "gold",
+    "ivory"
+   ],
+   "style": [
+    "traditional"
+   ],
+   "price": 15000,
+   "lead_time_weeks": 2,
+   "article_id": "a-groom-edit"
+  },
+  {
+   "id": "p21",
+   "brand_id": "b-vansh",
+   "side": "groom",
+   "kind": "accessory",
+   "name": "Embroidered mojaris",
+   "functions": [
+    "pheras",
+    "sangeet",
+    "reception"
+   ],
+   "colors": [
+    "gold",
+    "ivory",
+    "emerald"
+   ],
+   "style": [
+    "traditional"
+   ],
+   "price": 9000,
+   "lead_time_weeks": 1,
+   "article_id": "a-groom-edit"
+  },
+  {
+   "id": "p22",
+   "brand_id": "b-kesar",
+   "side": "groom",
+   "kind": "jewellery",
+   "name": "Kundan kalgi and pearl mala",
+   "functions": [
+    "pheras"
+   ],
+   "colors": [
+    "gold",
+    "ivory"
+   ],
+   "style": [
+    "traditional"
+   ],
+   "price": 42000,
+   "lead_time_weeks": 3,
+   "article_id": "a-groom-edit"
+  }
+ ]
 }

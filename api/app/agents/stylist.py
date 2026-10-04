@@ -106,7 +106,7 @@ def build(uid: str, context: dict, ev: Events):
             "within_budget": (context.get("budget") or 10**12) >= total,
             "pieces": [{"id": p["id"], "name": p["name"], "brand": p["brand"], "kind": p["kind"],
                         "price": p["price"], "colors": p["colors"], "lead_time_weeks": p["lead_time_weeks"],
-                        "seen_in": p.get("seen_in")} for p in pieces],
+                        "seen_in": p.get("seen_in"), "image": p.get("image"), "image_credit": p.get("image_credit")} for p in pieces],
         }
         for p in pieces:
             if p.get("seen_in"):
