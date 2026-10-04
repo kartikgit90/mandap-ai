@@ -15,7 +15,7 @@ import {
   type User,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import { apiGet, type Me } from "@/lib/api";
+import { apiGet, apiPost, type LlmTest, type Me } from "@/lib/api";
 
 export default function Home() {
   const [user, setUser] = useState<User | null>(null);
@@ -24,6 +24,7 @@ export default function Home() {
   const [busy, setBusy] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [llmTest, setLlmTest] = useState<LlmTest | null>(null);
 
   useEffect(() => onAuthStateChanged(auth, setUser), []);
 
@@ -119,6 +120,28 @@ export default function Home() {
                   !error && <p>Checking with the backend...</p>
                 )}
               </div>
+
+              {me?.role === "admin" && (
+                <div className="mt-4 rounded-lg border border-[#e8dccd] p-3 text-sm">
+                  <p className="font-medium">Admin: test Claude</p>
+                  <button
+                    onClick={() => run(async () => setLlmTest(await apiPost<LlmTest>("/admin/llm-test")))}
+                    disabled={busy}
+                    className="mt-2 w-full rounded-lg bg-[#7a1f2b] px-3 py-2 text-sm text-white hover:bg-[#651922] disabled:opacity-60"
+                  >
+                    {busy ? "Asking Claude..." : "Test Claude"}
+                  </button>
+                  {llmTest && (
+                    <div className="mt-3 space-y-1">
+                      <p>&ldquo;{llmTest.reply}&rdquo;</p>
+                      <p className="text-xs text-[#9a8574]">
+                        {llmTest.model} via {llmTest.provider} · {llmTest.tokens_in} in / {llmTest.tokens_out} out
+                        tokens · ₹{llmTest.cost_inr.toFixed(4)} · {(llmTest.latency_ms / 1000).toFixed(1)}s
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
 
               <button
                 onClick={() => run(() => signOut(auth))}

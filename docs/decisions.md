@@ -4,6 +4,7 @@ Short record of what we chose and why. Newest first.
 
 | Date | Decision | Why |
 | --- | --- | --- |
+| 2026-10-04 | Claude via Anthropic API for now (`LLM_PROVIDER=anthropic`), key in Secret Manager `anthropic-api-key`, read only by the compute service account | Vertex AI Claude quota auto-rejected twice for a new billing account; switch is one setting |
 | 2026-10-04 | Website on Firebase App Hosting, backend `mandap-ai`, asia-southeast1 (Singapore) | App Hosting has no Mumbai region; the web server holds no data, all data stays in Mumbai |
 | 2026-10-04 | Added `mandap-ai--mandap-ai.asia-southeast1.hosted.app` to Firebase Auth authorized domains | Firebase only allows logins from known sites |
 | 2026-10-04 | Backend CORS: only our App Hosting sites and localhost | Browsers must not let other sites call our API with a user's login |

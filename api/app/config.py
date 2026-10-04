@@ -21,6 +21,14 @@ class Settings(BaseSettings):
     llm_provider: Literal["anthropic", "vertex"] = "anthropic"
     anthropic_api_key: str = ""
 
+    # Model names differ slightly between Anthropic and Google. Change here, not in code.
+    anthropic_model_fast: str = "claude-haiku-4-5-20251001"
+    anthropic_model_smart: str = "claude-sonnet-5-5"
+    vertex_model_fast: str = "claude-haiku-4-5@20251001"
+    vertex_model_smart: str = "claude-sonnet-5-5"
+
+    usd_to_inr: float = 85.0  # rough rate, only for showing costs in rupees
+
     cors_origins: str = "http://localhost:3000"
     # Also allow our Firebase App Hosting site (address looks like
     # https://mandap-web--mandap-ai.<region>.hosted.app) and any local dev port.
