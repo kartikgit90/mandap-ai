@@ -31,7 +31,11 @@ export default function ChatPanel({
   const [error, setError] = useState("");
   const bottom = useRef<HTMLDivElement>(null);
 
-  useEffect(() => bottom.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }), [turns, busy]);
+  // Braces matter: newer Chrome returns a Promise from scrollIntoView, and React
+  // would try to call whatever an effect returns as its cleanup ("u is not a function").
+  useEffect(() => {
+    bottom.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [turns, busy]);
 
   async function send(text: string) {
     const msg = text.trim();
